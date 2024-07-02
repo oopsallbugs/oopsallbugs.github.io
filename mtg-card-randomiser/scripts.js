@@ -8,7 +8,6 @@ $.ajax({
     dataType: "json"
 }).done(function( cardNames ) {
     cardList = cardNames.data;
-    console.log(cardList);
 })
 
 
@@ -20,7 +19,6 @@ function getRandomInt(min, max) {
 }
 
 $('#button1').click(function() {
-    $('#myDiv').text("it changed");
     $(this).toggleClass('btn-danger').toggleClass('btn-primary');
     let randomNum = getRandomInt(0, cardList.length);
     let magicCardName = cardList[randomNum];
@@ -37,8 +35,7 @@ $('#button1').click(function() {
     })
     .done(function( cardData ) {
         // handles sucessful response
-        // console.log(cardData);
-        $("#cardImg").attr( "src", cardData.image_uris.small )
+        $("#cardImg").attr( "src", cardData.image_uris.normal )
     }) 
     .fail(function(xhr, status, errorThrown) {
         // handles failed response
@@ -55,8 +52,12 @@ $('#button1').click(function() {
     });
 })
 
-$(document).ready(function() {
-    $
-})
+
+// TODO: add search funcation using the scryfall search api https://scryfall.com/docs/api/lists 
+// add ability to display multiple cards at a time
+
+// $(document).ready(function() {
+//     $
+// })
 
 
