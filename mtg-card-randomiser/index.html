@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Hello World!</title>
+  <title>MTG card randomiser</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -20,21 +20,30 @@
   <link rel="stylesheet" href="styles.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="scripts.js" defer></script>
+
+    <!--- Custom CSS -->
+    <style>
+      .navbar-nav .nav-link.active{
+        background-color: #007bff;
+        color: white;
+        border-radius: 9px;
+        padding: 10px;
+      }
+    </style>
+
 </head>
 
 <body>
-  <nav class="menu">
-    <h2>Projects</h2>
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/falling-star-screen-saver/index.html">Falling star screen saver</a></li>
-      <li><a href="/chess-board/index.html">Chess board</a></li>
-    </ul>
+  <nav class="nav navbar-nav flex-column flex-sm-row">
+    <a class="flex-sm-fill text-sm-center nav-link" href="/index.html">Home</a>
+    <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="/mtg-card-randomiser/index.html">MTG card randomiser</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="/falling-star-screen-saver/index.html">Falling stars screen saver</a>
+    <a class="flex-sm-fill text-sm-center nav-link" href="/chess-board/index.html">Chess board</a>
   </nav>
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-4 col-md-6 col-sm-12">
-        <div id="myDiv">Push button for MTG</div>
+        <div id="myDiv"></div>
         <button class="btn btn-primary" type="button" id="button1">Random card</button>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Search for a card" aria-label="Card search input"

@@ -2,12 +2,20 @@ html, body {
     margin: 0;
     padding: 0;
   }
+
+.navbar-nav .nav-link.active{
+    background-color: #007bff;
+    color: white;
+    border-radius: 9px;
+    padding: 10px;
+}
   
   :root {
     --burger-menu-bar-width: 60px;
     --burger-menu-bar-height: 8px;
     --burger-menu-gap: 3px;
-    --burger-menu-margin: 5px;
+    --burger-menu-margin: 35px;
+    --burger-menu-padding-left: 20px;
     --burger-menu-background: rgba(0, 0, 0, 0);
     --burger-menu-foreground: grey;
     --burger-menu-animation-timing: 200ms ease-in-out;
@@ -24,7 +32,7 @@ html, body {
     width: max-content;
     position: absolute;
     top: var(--burger-menu-margin);
-    left: var(--burger-menu-margin);
+    left: var(--burger-menu-padding-left);
     z-index: 2;
   }
   
@@ -77,7 +85,7 @@ html, body {
     transition: translate var(--burger-menu-animation-timing);
     translate: -100%;
     padding: 0.5rem 1rem;
-    padding-top: calc(var(--burger-menu-height) + var(--burger-menu-margin) + 1rem);
+    padding-top: calc(var(--burger-menu-height));
     background-color: var(--burger-menu-background);
     display: flex;
     flex-direction: column;

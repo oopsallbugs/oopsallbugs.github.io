@@ -1,6 +1,6 @@
 function setup() {
-  // sets size of canvas
-  createCanvas(700, 700);
+  let canvas = createCanvas(700, 700);
+  canvas.parent(document.querySelector('.chess-board-container'));
   rectMode(CENTER);
   angleMode(DEGREES);
 }
