@@ -1,12 +1,12 @@
-let chessProfile = null;
+// let chessProfile = null;
 
-$.ajax({
-    url: "https://api.chess.com/pub/player/ages_taker",
+// $.ajax({
+//     url: "https://api.chess.com/pub/player/ages_taker",
 
-    type: "GET",
+//     type: "GET",
 
-    dataType: "json"
-}).done(function( json ) {
-    chessProfile = json.data;
-}) 
-console.log(chessProfile)
+//     dataType: "json"
+// }).done(function( json ) {
+//     chessProfile = json.data;
+// }) 
+// console.log(chessProfile)
