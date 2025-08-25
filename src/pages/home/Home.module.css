@@ -1,0 +1,41 @@
+.pageContent {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.header h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.navContainer {
+  margin-bottom: 20px;
+}
+
+.navContainer nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navContainer nav ul li {
+  display: block;
+}
+
+.mainContent {
+  margin-bottom: 20px;
+}
+
+.textContent {
+  margin-bottom: 20px;
+}

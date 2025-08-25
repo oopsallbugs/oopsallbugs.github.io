@@ -1,0 +1,7 @@
+/* global styles */
+
+.appWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
