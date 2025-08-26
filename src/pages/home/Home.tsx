@@ -1,12 +1,10 @@
 import styles from "./Home.module.css";
-import BlackholeAnimation from "../../components/BlackholeAnimation";
 
 function Home() {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.blackholeContainer}>
         {/* Interactive blackhole animation with cursor gravity */}
-        <BlackholeAnimation />
 
         {/* Top Left: Header + Navigation */}
         <div className={styles.topLeft}>
