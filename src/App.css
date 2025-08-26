@@ -1,7 +1,12 @@
 /* global styles */
+:root {
+  --wrapperPadding: 30px;
+}
 
 .appWrapper {
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: var(--wrapperPadding);
+  padding-bottom: 0;
+  height: 100vh;
 }

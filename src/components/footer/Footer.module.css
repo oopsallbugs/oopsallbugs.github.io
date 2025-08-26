@@ -1,3 +1,7 @@
 .footer {
+  height: var(--wrapperPadding);
+  align-items: center;
   text-align: flex-start;
+  display: flex;
+  font-size: 10px;
 }

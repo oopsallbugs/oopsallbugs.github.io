@@ -1,0 +1,208 @@
+.animationContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+/* Canvas for particle trails */
+.trailCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Blackhole Visual */
+.blackhole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  z-index: 5;
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.blackholeCore {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #000 10%, #111 40%, #000 90%);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.9), 0 0 60px rgba(0, 0, 0, 0.6),
+    inset 0 0 15px rgba(0, 0, 0, 0.95);
+}
+
+.blackholeRing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  border-top-color: rgba(150, 150, 150, 0.4);
+  border-right-color: rgba(120, 120, 120, 0.3);
+  border-bottom-color: rgba(100, 100, 100, 0.2);
+  border-left-color: rgba(130, 130, 130, 0.35);
+  box-shadow: 0 0 20px rgba(120, 120, 120, 0.3),
+    inset 0 0 20px rgba(80, 80, 80, 0.2);
+}
+
+.blackholeAccretion {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 110px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top-color: rgba(100, 100, 100, 0.25);
+  border-right-color: rgba(80, 80, 80, 0.15);
+  border-bottom-color: rgba(60, 60, 60, 0.1);
+  border-left-color: rgba(90, 90, 90, 0.2);
+  animation: counterRotate 25s linear infinite;
+}
+
+@keyframes counterRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+/* Event Horizon Glow */
+.eventHorizon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    circle,
+    transparent 15%,
+    rgba(40, 40, 40, 0.1) 30%,
+    rgba(30, 30, 30, 0.08) 50%,
+    rgba(20, 20, 20, 0.05) 70%,
+    transparent 85%
+  );
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulse 6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  to {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, #888 0%, #555 50%, transparent 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 6px rgba(120, 120, 120, 0.6),
+    0 0 12px rgba(100, 100, 100, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .blackhole {
+    width: 90px;
+    height: 90px;
+  }
+
+  .blackholeCore {
+    width: 35px;
+    height: 35px;
+  }
+
+  .blackholeRing {
+    width: 65px;
+    height: 65px;
+    border-width: 2px;
+  }
+
+  .blackholeAccretion {
+    width: 80px;
+    height: 80px;
+  }
+
+  .eventHorizon {
+    width: 180px;
+    height: 180px;
+  }
+
+  .particle {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .blackhole {
+    width: 70px;
+    height: 70px;
+  }
+
+  .blackholeCore {
+    width: 25px;
+    height: 25px;
+  }
+
+  .blackholeRing {
+    width: 50px;
+    height: 50px;
+  }
+
+  .blackholeAccretion {
+    width: 60px;
+    height: 60px;
+  }
+
+  .eventHorizon {
+    width: 140px;
+    height: 140px;
+  }
+
+  .particle {
+    width: 2px;
+    height: 2px;
+  }
+}
