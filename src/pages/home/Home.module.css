@@ -6,48 +6,12 @@
   overflow: hidden;
 }
 
-/* Main Blackhole Container - This will be your animation wrapper */
-.blackholeContainer {
+.pageContentContainer {
   width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: transparent;
   border: 1px solid #000;
-  /* This container will house your blackhole animation */
-}
-
-/* Blackhole Animation Area - Replace this with your canvas/animation */
-.blackholeAnimation {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: var(--wrapperPadding);
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Your animation logic will replace the content of this div */
-}
-
-/* Placeholder styling - remove when you add your animation */
-.placeholderText {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: #999;
-  opacity: 0.6;
-  pointer-events: none;
-  user-select: none;
-}
-
-.placeholderSubtext {
-  display: block;
-  font-size: 0.875rem;
-  font-style: italic;
-  color: #bbb;
-  margin-top: 0.5rem;
 }
 
 /* Top Left: Header + Navigation - These float above the animation */
@@ -69,7 +33,7 @@
   font-weight: 300;
   margin: 0 0 0.25rem 0;
   letter-spacing: -0.02em;
-  color: #000;
+  color: #bbb;
   line-height: 1.1;
 }
 
@@ -101,7 +65,7 @@
 }
 
 .navLink {
-  color: #000;
+  color: #444;
   text-decoration: none;
   font-weight: 400;
   font-size: 0.875rem;
@@ -146,14 +110,13 @@
 }
 
 .introSection {
-  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
 }
 
 .introText {
   font-size: 1rem;
   line-height: 1.6;
-  color: #333;
+  color: #666;
   margin: 0;
   font-weight: 300;
 }

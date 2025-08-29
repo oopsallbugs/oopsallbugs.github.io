@@ -1,11 +1,11 @@
 import styles from "./Home.module.css";
+import BlackHole from "../../components/blackhole/BlackHoleCanvas";
 
 function Home() {
   return (
     <div className={styles.pageWrapper}>
-      <div className={styles.blackholeContainer}>
-        {/* Interactive blackhole animation with cursor gravity */}
-
+      <div className={styles.pageContentContainer}>
+        <BlackHole />
         {/* Top Left: Header + Navigation */}
         <div className={styles.topLeft}>
           <header className={styles.header}>
