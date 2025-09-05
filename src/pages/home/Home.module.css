@@ -1,33 +1,3 @@
-/* Page Wrapper */
-.pageWrapper {
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  overflow: hidden;
-}
-
-.pageContentContainer {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: black;
-  border: 1px solid #000;
-}
-
-/* Bottom Right: Intro - Also floats above animation */
-.bottomRight {
-  position: absolute;
-  bottom: calc(var(--wrapperPadding) * 2);
-  right: calc(var(--wrapperPadding) * 2);
-  justify-self: flex-end;
-  z-index: 10;
-  max-width: 300px;
-  pointer-events: auto; /* Ensure UI elements are interactive */
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
-  padding: 0.5rem;
-}
-
 .introSection {
   margin: 8px;
 }

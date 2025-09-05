@@ -1,22 +1,24 @@
 import styles from "./BlackHolePageLayout.module.css";
 import BlackHoleCanvas from "../components/blackhole/BlackHoleCanvas";
 import Navigation from "../components/Navigation";
-import { useOutletContext } from "react-router-dom";
 
-interface BlackHolePageLayoutOutletContext {
-  enableCamera: boolean;
-  enableControls: boolean;
-  enableSkyBox: boolean;
+interface BlackHolePageLayoutProps {
+  children: React.ReactNode;
+  enableCamera?: boolean;
+  enableControls?: boolean;
+  enableSkyBox?: boolean;
 }
 
 interface BlackHolePageLayoutProps {
   children: React.ReactNode;
 }
 
-const BlackHolePageLayout = ({ children }: BlackHolePageLayoutProps) => {
-  const { enableCamera, enableControls, enableSkyBox } =
-    useOutletContext<BlackHolePageLayoutOutletContext>();
-
+const BlackHolePageLayout = ({
+  children,
+  enableCamera = false,
+  enableControls = false,
+  enableSkyBox = false,
+}: BlackHolePageLayoutProps) => {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.pageContentContainer}>

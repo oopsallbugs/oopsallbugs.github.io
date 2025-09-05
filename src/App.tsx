@@ -3,6 +3,7 @@ import "./App.css";
 import Footer from "./components/footer/Footer";
 import { useState } from "react";
 import type { FooterOutletContext } from "./components/footer/Footer";
+import BlackHolePageLayout from "./components/BlackHolePageLayout";
 
 const App = () => {
   const location = useLocation();
@@ -14,6 +15,7 @@ const App = () => {
     switch (location.pathname) {
       case "/":
       case "/home":
+      case "/contact":
         return {
           enableCamera,
           enableControls,
@@ -31,10 +33,6 @@ const App = () => {
         return {
           // Resume page context - add any needed controls here
         };
-      case "/contact":
-        return {
-          // Contact page context - add any needed controls here
-        };
       default:
         return {};
     }
@@ -42,10 +40,24 @@ const App = () => {
 
   const currentPageContext = getPageContext();
 
+  // Pages that should use the black hole layout
+  const blackHolePages = ["/", "/home", "/contact"];
+  const shouldUseBlackHoleLayout = blackHolePages.includes(location.pathname);
+
   return (
     <div className="appWrapper">
       <main className="appContent">
-        <Outlet context={currentPageContext} />
+        {shouldUseBlackHoleLayout ? (
+          <BlackHolePageLayout
+            enableCamera={enableCamera}
+            enableControls={enableControls}
+            enableSkyBox={enableSkyBox}
+          >
+            <Outlet context={currentPageContext} />
+          </BlackHolePageLayout>
+        ) : (
+          <Outlet context={currentPageContext} />
+        )}
       </main>
       <Footer context={currentPageContext} />
     </div>

@@ -71,6 +71,7 @@
 
 .navLink:hover {
   color: #eee;
+  font-weight: 600;
   transform: translateX(4px);
 }
 
@@ -88,4 +89,9 @@
 
 .navLink:hover::before {
   width: 8px;
+}
+
+.activeLink {
+  color: #eee !important;
+  font-weight: 600;
 }
