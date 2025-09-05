@@ -10,3 +10,7 @@
   padding-bottom: 0;
   height: 100vh;
 }
+
+.appContent {
+  flex: 1;
+}

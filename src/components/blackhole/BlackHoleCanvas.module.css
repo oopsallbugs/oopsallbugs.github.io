@@ -1,0 +1,12 @@
+.pageWrapper {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.controlsOverlay {
+  position: absolute;
+  bottom: var(--wrapperPadding);
+  left: var(--wrapperPadding);
+  z-index: 10;
+}

@@ -2,18 +2,7 @@ import { useRef, useMemo } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { Line } from "@react-three/drei";
-
-interface SpiralLinesProps {
-  lineCount: number;
-  spiralRadius: number;
-  distanceToCenter: number;
-  numRotationsToCenter: number;
-  segments: number;
-  spiralSpeed: number;
-  color: string;
-  lineWidth: number;
-  opacity: number;
-}
+import type { SpiralLinesProps } from "./blackHoleTypes";
 
 const SpiralLines = ({
   lineCount,

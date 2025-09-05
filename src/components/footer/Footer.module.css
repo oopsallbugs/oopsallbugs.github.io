@@ -1,7 +1,18 @@
 .footer {
   height: var(--wrapperPadding);
-  align-items: center;
-  text-align: flex-start;
+  flex-direction: row;
   display: flex;
   font-size: 10px;
+}
+
+.pageControls {
+  gap: 12px;
+  display: flex;
+  flex: 1;
+}
+
+.copyRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

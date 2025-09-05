@@ -1,24 +1,15 @@
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-
-interface BlackHoleSphereProps {
-  radius: number;
-  segmentWidth: number;
-  segmentHeight: number;
-  color: string;
-  emissive: string;
-  emissiveIntensity: number;
-  rotationSpeed: number;
-}
+import type { BlackHoleSphereProps } from "./blackHoleTypes";
 
 const BlackHoleSphere = ({
   radius,
   segmentWidth,
   segmentHeight,
   color,
-  emissive,
-  emissiveIntensity,
+  glow,
+  glowIntensity,
   rotationSpeed,
 }: BlackHoleSphereProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -34,8 +25,8 @@ const BlackHoleSphere = ({
       <sphereGeometry args={[radius, segmentWidth, segmentHeight]} />
       <meshStandardMaterial
         color={color}
-        emissive={emissive}
-        emissiveIntensity={emissiveIntensity}
+        emissive={glow}
+        emissiveIntensity={glowIntensity}
       />
     </mesh>
   );

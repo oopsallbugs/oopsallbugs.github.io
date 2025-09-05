@@ -1,116 +1,120 @@
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useRef, useMemo } from "react";
+import type { ParticlesProps } from "./blackHoleTypes";
 
-interface ParticlesProps {
-  particleCount: number;
-  blackHoleRadius: number;
-}
-
-const Particles = ({ particleCount, blackHoleRadius }: ParticlesProps) => {
+const Particles = ({
+  particleCount,
+  size,
+  color,
+  opacity,
+  blackHoleRadius,
+}: ParticlesProps) => {
   const particlesRef = useRef<THREE.Points>(null);
-  const resetTimers = useRef(new Float32Array(particleCount)); // Track reset timers for particles
-  const { positions, alphas } = useMemo(() => {
+
+  const initialMinDrawRadius = blackHoleRadius + 0.2;
+  const minDrawRadius = blackHoleRadius + 10;
+  const maxDrawRadius = blackHoleRadius + 20;
+
+  // Parameters to tweak
+  const coneAngle = Math.PI / 6; // 60° cone
+  const radialSpeed = 0.025; // faster/slower fall into black hole (lower number = more rotations)
+  const spiralSpeed = 0.25; // faster/slower spiral motion (higher number = faster spin)
+
+  // Precompute positions
+  const { positions } = useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
-    const alphas = new Float32Array(particleCount); // Tracks alpha for each particle
 
+    const drawParticle = (i3: number) => {
+      const radius = THREE.MathUtils.lerp(
+        initialMinDrawRadius,
+        maxDrawRadius,
+        Math.random()
+      );
+      // Randomly set y position within the cone of coneAngle degrees from the center
+      const maxHeight = Math.tan(coneAngle) * radius;
+      const py = (Math.random() * 2 - 1) * maxHeight;
+      // Randomly set positions on the xz-plane
+      const angle = Math.random() * Math.PI * 2;
+      const px = radius * Math.cos(angle);
+      const pz = radius * Math.sin(angle);
+
+      // Store positions
+      positions[i3] = px;
+      positions[i3 + 1] = py;
+      positions[i3 + 2] = pz;
+    };
+
+    //
     for (let i = 0; i < particleCount; i++) {
-      const i3 = i * 3;
-
-      const radius = Math.random() * 20 + 8;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = (Math.random() - 0.5) * Math.PI * 0.4;
-
-      const x = radius * Math.cos(theta) * Math.cos(phi);
-      const y = radius * Math.sin(phi);
-      const z = radius * Math.sin(theta) * Math.cos(phi);
-
-      positions[i3] = x;
-      positions[i3 + 1] = y;
-      positions[i3 + 2] = z;
-
-      alphas[i] = 1.0; // Start with full alpha
+      drawParticle(i * 3);
     }
 
-    return { positions, alphas };
-  }, [particleCount]);
+    return { positions };
+  }, [particleCount, initialMinDrawRadius, maxDrawRadius, coneAngle]);
 
   useFrame((_, delta) => {
     if (!particlesRef.current) return;
 
-    const positions = particlesRef.current.geometry.attributes.position
+    const positionsArray = particlesRef.current.geometry.attributes.position
       .array as Float32Array;
-    const material = particlesRef.current.material as THREE.PointsMaterial;
 
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3;
 
-      const x = positions[i3];
-      const y = positions[i3 + 1];
-      const z = positions[i3 + 2];
+      const px = positionsArray[i3];
+      const py = positionsArray[i3 + 1];
+      const pz = positionsArray[i3 + 2];
 
-      const distanceToCenter = Math.sqrt(x * x + y * y + z * z);
+      const r = Math.sqrt(px * px + py * py + pz * pz);
 
-      // Handle alpha fade-in for recently reset particles
-      if (resetTimers.current[i] > 0) {
-        resetTimers.current[i] -= delta;
-        // Linear fade from 0 to 1 over 5 seconds
-        const fadeProgress = (5 - resetTimers.current[i]) / 5;
-        alphas[i] = Math.min(1, Math.max(0, fadeProgress));
+      // Respawn particle if it reaches the black hole
+      if (r < blackHoleRadius) {
+        const radius = THREE.MathUtils.lerp(
+          minDrawRadius,
+          maxDrawRadius,
+          Math.random()
+        );
+        const angle = Math.random() * Math.PI * 2;
+        const maxHeight = Math.tan(coneAngle) * radius;
+        const pyNew = (Math.random() * 2 - 1) * maxHeight;
+        positionsArray[i3] = radius * Math.cos(angle);
+        positionsArray[i3 + 1] = pyNew;
+        positionsArray[i3 + 2] = radius * Math.sin(angle);
+        continue;
       }
 
-      // Reset when particle passes through the black hole surface
-      if (distanceToCenter < blackHoleRadius) {
-        // Reset particle to new random position
-        const radius = Math.random() * 20 + 8;
-        const theta = Math.random() * Math.PI * 2;
-        const phi = (Math.random() - 0.5) * Math.PI * 0.4;
+      // Normalized radial vector toward black hole
+      const nx = -px / r;
+      const ny = -py / r;
+      const nz = -pz / r;
 
-        positions[i3] = radius * Math.cos(theta) * Math.cos(phi);
-        positions[i3 + 1] = radius * Math.sin(phi);
-        positions[i3 + 2] = radius * Math.sin(theta) * Math.cos(phi);
+      // Strong radial pull
+      let vx = nx * radialSpeed;
+      let vy = ny * radialSpeed;
+      let vz = nz * radialSpeed;
 
-        // Start 5-second fade-in timer
-        resetTimers.current[i] = 5.0;
-        alphas[i] = 0.0;
-      } else {
-        // Pull particles toward center (0,0,0)
-        const pullStrength = (1 / (distanceToCenter * distanceToCenter)) * 0.15;
-        const spiralStrength = 0.04 / distanceToCenter;
+      // Tangential velocity for spiral motion
+      let tx = -pz;
+      let tz = px;
+      const tLen = Math.sqrt(tx * tx + tz * tz);
+      tx /= tLen;
+      tz /= tLen;
 
-        // Calculate direction toward center for all axes
-        const directionX = -x / distanceToCenter;
-        const directionY = -y / distanceToCenter;
-        const directionZ = -z / distanceToCenter;
+      // Add spiral motion
+      vx += tx * spiralSpeed;
+      vz += tz * spiralSpeed;
 
-        // Apply inward pull on all axes
-        const pullSpeed = pullStrength * delta * 25;
-        const newX = x + directionX * pullSpeed;
-        const newY = y + directionY * pullSpeed;
-        const newZ = z + directionZ * pullSpeed;
+      // Small random turbulence
+      vx += (Math.random() - 0.5) * 0.1;
+      vy += (Math.random() - 0.5) * 0.1;
+      vz += (Math.random() - 0.5) * 0.1;
 
-        // Add spiral motion to X-Z plane
-        const currentRadius = Math.sqrt(newX * newX + newZ * newZ);
-        const currentAngle = Math.atan2(newZ, newX);
-        const newAngle = currentAngle + spiralStrength * delta * 12;
-
-        // Apply spiral only if we're not too close to center
-        if (currentRadius > 0.1) {
-          positions[i3] = currentRadius * Math.cos(newAngle);
-          positions[i3 + 2] = currentRadius * Math.sin(newAngle);
-        } else {
-          positions[i3] = newX;
-          positions[i3 + 2] = newZ;
-        }
-
-        positions[i3 + 1] = newY;
-      }
+      // Update position
+      positionsArray[i3] += vx * delta;
+      positionsArray[i3 + 1] += vy * delta;
+      positionsArray[i3 + 2] += vz * delta;
     }
-
-    // Update material opacity based on average alpha
-    const averageAlpha =
-      alphas.reduce((sum, alpha) => sum + alpha, 0) / particleCount;
-    material.opacity = averageAlpha;
 
     particlesRef.current.geometry.attributes.position.needsUpdate = true;
   });
@@ -121,10 +125,10 @@ const Particles = ({ particleCount, blackHoleRadius }: ParticlesProps) => {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.08}
-        color="#ffffff"
+        size={size}
+        color={color}
         transparent
-        opacity={0.9}
+        opacity={opacity}
         blending={THREE.AdditiveBlending}
       />
     </points>
