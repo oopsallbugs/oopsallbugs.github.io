@@ -1,13 +1,13 @@
 import Navigation from "../../components/Navigation";
-import styles from "./Resume.module.css";
+import styles from "./Projects.module.css";
 
-const Resume = () => {
+const Projects = () => {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.pageContentContainer}>
         <Navigation />
         <div className={styles.content}>
-          <h1>Resume</h1>
+          <h1>Projects</h1>
           <p>Coming Soon!</p>
         </div>
       </div>
@@ -15,4 +15,4 @@ const Resume = () => {
   );
 };
 
-export default Resume;
+export default Projects;

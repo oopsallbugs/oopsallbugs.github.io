@@ -1,13 +1,13 @@
 import Navigation from "../../components/Navigation";
-import styles from "./Resume.module.css";
+import styles from "./Contact.module.css";
 
-const Resume = () => {
+const Contact = () => {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.pageContentContainer}>
         <Navigation />
         <div className={styles.content}>
-          <h1>Resume</h1>
+          <h1>Contact</h1>
           <p>Coming Soon!</p>
         </div>
       </div>
@@ -15,4 +15,4 @@ const Resume = () => {
   );
 };
 
-export default Resume;
+export default Contact;

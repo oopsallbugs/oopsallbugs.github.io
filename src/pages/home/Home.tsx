@@ -1,19 +1,17 @@
 import styles from "./Home.module.css";
 import BlackHoleCanvas from "../../components/blackhole/BlackHoleCanvas";
+import Navigation from "../../components/Navigation";
 import { useOutletContext } from "react-router-dom";
 
-interface OutletContext {
+interface HomeOutletContext {
   enableCamera: boolean;
   enableControls: boolean;
   enableSkyBox: boolean;
-  setEnableCamera: (value: boolean) => void;
-  setEnableControls: (value: boolean) => void;
-  setEnableSkyBox: (value: boolean) => void;
 }
 
 const Home = () => {
   const { enableCamera, enableControls, enableSkyBox } =
-    useOutletContext<OutletContext>();
+    useOutletContext<HomeOutletContext>();
 
   return (
     <div className={styles.pageWrapper}>
@@ -23,40 +21,8 @@ const Home = () => {
           camera={enableCamera}
           skyBox={enableSkyBox}
         />
-        {/* Top Left: Header + Navigation */}
-        {!enableControls && (
-          <div className={styles.topLeft}>
-            <header className={styles.header}>
-              <h1 className={styles.name}>Sam Humphries</h1>
-              <h2 className={styles.title}>Software Developer</h2>
-            </header>
-
-            <nav className={styles.navigation}>
-              <ul className={styles.navList}>
-                <li className={styles.navItem}>
-                  <a href="#home" className={styles.navLink}>
-                    Home
-                  </a>
-                </li>
-                <li className={styles.navItem}>
-                  <a href="#projects" className={styles.navLink}>
-                    Projects
-                  </a>
-                </li>
-                <li className={styles.navItem}>
-                  <a href="#resume" className={styles.navLink}>
-                    Resume
-                  </a>
-                </li>
-                <li className={styles.navItem}>
-                  <a href="#contact" className={styles.navLink}>
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        )}
+        {/* Title + Navigation Defaults (absolute top left) */}
+        {!enableControls && <Navigation />}
 
         {/* Bottom Right: Intro */}
         {!enableControls && (
@@ -64,7 +30,7 @@ const Home = () => {
             <section className={styles.introSection}>
               <p className={styles.introText}>
                 Passionate about creating elegant solutions to complex problems.
-                Currently seeking opportunities to contribute to innovative
+                Currently seeking opportunities to contribute, innovative
                 projects and grow as a developer.
               </p>
             </section>

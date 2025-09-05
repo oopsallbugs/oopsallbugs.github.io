@@ -1,0 +1,91 @@
+/* Top Left: Header + Navigation - These float above the animation */
+.topLeft {
+  position: absolute;
+  top: calc(var(--wrapperPadding) * 2);
+  left: calc(var(--wrapperPadding) * 2);
+  z-index: 10;
+  max-width: 300px;
+  pointer-events: auto; /* Ensure UI elements are interactive */
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.topLeft:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.header {
+  margin-bottom: 1rem;
+  user-select: none;
+}
+
+.name {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: -0.02em;
+  color: #eee;
+  line-height: 1.1;
+  user-select: none;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Navigation */
+
+.navList {
+  list-style: none;
+  padding: 0.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  color: #bbb;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0;
+  transition: all 0.2s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.navLink:hover {
+  color: #eee;
+  transform: translateX(4px);
+}
+
+.navLink::before {
+  content: "";
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 1px;
+  background-color: #bbb;
+  transition: width 0.3s ease;
+}
+
+.navLink:hover::before {
+  width: 8px;
+}

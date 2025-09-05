@@ -122,7 +122,6 @@ const BlackHoleCanvas = ({
           height: "100%",
           width: "100%",
           position: "absolute",
-          backgroundColor: "black",
         }}
       >
         {skyBox && <SkyBox />}
