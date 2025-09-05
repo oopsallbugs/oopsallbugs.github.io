@@ -9,10 +9,6 @@ interface BlackHolePageLayoutProps {
   enableSkyBox?: boolean;
 }
 
-interface BlackHolePageLayoutProps {
-  children: React.ReactNode;
-}
-
 const BlackHolePageLayout = ({
   children,
   enableCamera = false,
