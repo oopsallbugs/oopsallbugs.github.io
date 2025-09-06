@@ -8,7 +8,7 @@ interface BlackHolePageLayoutProps {
   enableControls?: boolean;
   enableSkyBox?: boolean;
 }
-
+// TODO: add prop types
 const BlackHolePageLayout = ({
   children,
   enableCamera = false,

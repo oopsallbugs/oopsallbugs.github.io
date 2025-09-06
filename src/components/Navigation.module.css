@@ -10,6 +10,7 @@
   border-radius: 8px;
   padding: 0.5rem;
   transition: background-color 0.3s ease;
+  margin-right: calc(var(--wrapperPadding) * 2);
 }
 
 .topLeft:hover {

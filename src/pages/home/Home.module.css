@@ -1,10 +1,17 @@
-.introSection {
+.content {
   margin: 8px;
+  font-size: 16px;
+}
+
+.introSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .introText {
   justify-content: center;
-  font-size: 1rem;
-  color: #bbb;
+  text-wrap: wrap;
+  color: #fff;
   font-weight: 300;
 }
