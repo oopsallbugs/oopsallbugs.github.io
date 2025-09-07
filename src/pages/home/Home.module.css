@@ -1,6 +1,14 @@
 .content {
-  margin: 8px;
+  padding: calc(var(--wrapperPadding) / 2);
   font-size: 16px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.content:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease;
 }
 
 .introSection {

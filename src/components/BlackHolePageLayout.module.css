@@ -12,19 +12,24 @@
   overflow: hidden;
   background-color: black;
   border: 1px solid #000;
+  position: relative;
+}
+
+/* Top Left: Navigation positioning */
+.topLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 /* Bottom Right: Intro - Also floats above animation */
 .bottomRight {
   position: absolute;
-  bottom: calc(var(--wrapperPadding) * 2);
-  right: calc(var(--wrapperPadding) * 2);
-  justify-self: flex-end;
-  z-index: 10;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
   width: fit-content;
   pointer-events: auto; /* Ensure UI elements are interactive */
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
-  padding: 0.5rem;
-  margin-left: calc(var(--wrapperPadding) * 2);
+  padding: calc(var(--wrapperPadding) / 2);
 }

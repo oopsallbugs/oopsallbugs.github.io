@@ -1,16 +1,13 @@
-/* Top Left: Header + Navigation - These float above the animation */
+/* Top Left: Header + Navigation */
 .topLeft {
-  position: absolute;
-  top: calc(var(--wrapperPadding) * 2);
-  left: calc(var(--wrapperPadding) * 2);
-  z-index: 10;
-  max-width: 300px;
+  z-index: 1000;
+  max-width: 400px;
   pointer-events: auto; /* Ensure UI elements are interactive */
   background-color: rgba(0, 0, 0, 0);
   border-radius: 8px;
-  padding: 0.5rem;
   transition: background-color 0.3s ease;
-  margin-right: calc(var(--wrapperPadding) * 2);
+  margin: calc(var(--wrapperPadding) / 2);
+  padding: calc(var(--wrapperPadding) / 2);
 }
 
 .topLeft:hover {

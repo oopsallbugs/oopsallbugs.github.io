@@ -5,7 +5,9 @@ const Projects = () => {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.pageContentContainer}>
-        <Navigation />
+        <div className={styles.navLocation}>
+          <Navigation />
+        </div>
         <div className={styles.content}>
           <h1>Projects</h1>
           <p>Coming Soon!</p>

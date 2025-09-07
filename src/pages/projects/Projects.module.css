@@ -12,14 +12,15 @@
   background-color: black;
   border: 1px solid #000;
 }
+.navLocation {
+  position: absolute;
+  z-index: 1000;
+}
 
 .content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   color: white;
+  margin: calc(var(--wrapperPadding));
 }
 
 .content h1 {

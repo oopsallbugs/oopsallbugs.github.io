@@ -2,24 +2,34 @@
   height: 100%;
   width: 100%;
   background-color: transparent;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .pageContentContainer {
   height: 100%;
   width: 100%;
-  overflow: hidden;
-  background-color: black;
+  overflow: visible;
+  background-color: grey;
   border: 1px solid #000;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "nav content"; /* controls grid layout */
+}
+
+.navLocation {
+  grid-area: nav;
+  z-index: 1000;
+  width: fit-content;
 }
 
 .content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  grid-area: content;
   text-align: center;
   color: white;
+  margin: calc(var(--wrapperPadding) / 2);
+  padding: calc(var(--wrapperPadding) / 2);
+  background-color: #000;
+  border-radius: 8px;
 }
 
 .content h1 {
@@ -30,4 +40,49 @@
 .content p {
   font-size: 1.2rem;
   opacity: 0.8;
+}
+
+.educationList {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas: "certificateItem certificateItem" "certificateItem certificateItem";
+}
+
+.certificateItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: calc(var(--wrapperPadding) / 2);
+  border-radius: 8px;
+}
+
+.certificateImage {
+  max-width: 200px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.certificateImage:hover {
+  transform: scale(1.05);
+}
+
+/* Overlay for enlarged view */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: zoom-out;
+}
+
+.enlargedImage {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  touch-action: pinch-zoom;
 }
