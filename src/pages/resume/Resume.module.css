@@ -1,20 +1,26 @@
 /* Page Background */
 .pageContentContainer {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  height: calc(
+    100vh - (var(--wrapperPadding) * 2)
+  ); /* Adjust for header height */
+  overflow-y: auto;
+  background-image: url("/backgroundLQ.jpg");
+  background-size: cover;
 }
 
 .content {
   color: #f0f0f0;
+  z-index: 10;
 }
 
 /* Headings */
 .profileSection h1,
 .middleSection h1,
+.bottomSection h1,
 .educationSection h1,
 .skillsSection h1,
-.bottomSection h1 {
+.profileSection h1,
+.projectSection h1 {
   font-size: 2.5rem;
   font-weight: 700;
   color: #fff;
@@ -24,9 +30,11 @@
 
 .profileSection h2,
 .middleSection h2,
+.bottomSection h2,
 .educationSection h2,
 .skillsSection h2,
-.bottomSection h2 {
+.profileSection h2,
+.projectSection h2 {
   font-size: 1.8rem;
   font-weight: 600;
   color: #e5e7eb;
@@ -51,20 +59,28 @@
 
 .topSection {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: max-content 1fr;
   grid-template-rows: auto 1fr;
   align-items: start;
+}
+
+.topSection .section {
+  max-height: fit-content;
+  max-width: 1000px;
 }
 
 .navSection {
   grid-column: 1;
   grid-row: 1;
   z-index: 1000;
+  border-radius: var(--border-radius);
+  max-width: fit-content;
 }
 
-.profileSection {
-  grid-column: 2;
-  grid-row: 1 / span 2;
+.navSection > * {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+  text-wrap: nowrap;
 }
 
 .profileText {
@@ -124,14 +140,19 @@
   align-items: start;
 }
 
+.bottomSection .section {
+  height: calc(100% - var(--wrapperPadding));
+}
+
 /* Section Containers */
 .section {
   padding: calc(var(--wrapperPadding) / 2);
   margin: calc(var(--wrapperPadding) / 2);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--overlay-bg);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   height: fit-content;
+  backdrop-filter: blur(10px);
 }
 
 /* Experience */
@@ -174,6 +195,7 @@
 
 /* Projects */
 .projectList {
+  margin-top: calc(var(--wrapperPadding) / 2);
   display: grid;
   grid-template-columns: 1fr;
   gap: calc(var(--wrapperPadding) / 2);
@@ -222,6 +244,11 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 4px solid #4f46e5;
   transition: all 0.3s ease;
+}
+
+.skillCategory:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
 }
 
 .skillCategory h3 {
@@ -299,7 +326,8 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  border-radius: var(--border-radius);
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -331,6 +359,12 @@
   border-radius: 12px;
   border-left: 4px solid #10b981;
   position: relative;
+  transition: all 0.3s ease;
+}
+
+.testimonialItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
 }
 
 .testimonialQuote {
@@ -371,7 +405,7 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .topSection {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
@@ -402,9 +436,8 @@
 }
 
 @media (max-width: 768px) {
-  .content {
-    margin: 1rem;
-    padding: 1.5rem;
+  .topSection .section {
+    max-width: 100%;
   }
 
   .content h1 {
@@ -412,7 +445,7 @@
   }
 
   .content h2 {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 
   .educationList {
@@ -422,19 +455,16 @@
   .experienceItem {
     padding: 1rem;
   }
-}
-
-@media (max-width: 480px) {
-  .content {
-    margin: 0.5rem;
-    padding: 1rem;
+  .topSection .section {
+    max-width: 100%;
   }
-
+}
+@media (max-width: 480px) {
   .content h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .content h2 {
-    font-size: 1.3rem;
+    font-size: 0.8rem;
   }
 }

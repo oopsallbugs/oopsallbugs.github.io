@@ -1,14 +1,14 @@
 .content {
   padding: calc(var(--wrapperPadding) / 2);
-  font-size: 16px;
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
+  font-size: var(--font-size-lg);
+  background-color: var(--bg-overlay-transparent);
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-normal);
 }
 
 .content:hover {
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: background-color 0.3s ease;
+  background-color: var(--bg-overlay-light);
+  transition: background-color var(--transition-normal);
 }
 
 .introSection {
@@ -20,6 +20,6 @@
 .introText {
   justify-content: center;
   text-wrap: wrap;
-  color: #fff;
-  font-weight: 300;
+  color: var(--text-white);
+  font-weight: var(--font-weight-light);
 }

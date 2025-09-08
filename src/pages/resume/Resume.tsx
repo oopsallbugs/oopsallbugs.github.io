@@ -293,41 +293,44 @@ const Resume = () => {
           {/* Fourth row: Projects + Testimonials */}
           <div className={styles.bottomSection}>
             <div className={styles.section}>
-              <h2>Projects</h2>
-              <ul className={styles.projectList}>
-                <li className={styles.projectItem}>
-                  <div className={styles.projectTitle}>Portfolio Website</div>
-                  <div className={styles.projectBody}>
-                    A personal portfolio website featuring an interactive 3D
-                    black hole visualization built with React, TypeScript, React
-                    Three Fiber & WebGL. Includes real-time particle systems,
-                    orbital controls, and automated GitHub Pages deployment.
-                  </div>
-                </li>
-                <li className={styles.projectItem}>
-                  <div className={styles.projectTitle}>
-                    Budgeting App (in progress)
-                  </div>
-                  <div className={styles.projectBody}>
-                    • Tech stack: React Native, Expo, TypeScript, PostgreSQL,
-                    Kysely, TanStack Query, Turborepo.
-                    <br />
-                    • Designed and bootstrapped a budgeting app in a scalable
-                    monorepo using Turborepo and Expo.
-                    <br />
-                    • Implemented typed queries with Kysely and PostgreSQL for
-                    structured, maintainable backend logic.
-                    <br />
-                    • Used TanStack Query for eﬃcient client-side state and
-                    caching.
-                    <br />
-                    • Focused on clean architecture, oﬄine-first potential, and
-                    mobile responsiveness.
-                    <br />• Demonstrates strong understanding of project
-                    structure, mobile-first development, and toolchain setup.
-                  </div>
-                </li>
-              </ul>
+              <div className={styles.projectSection}>
+                <h2>Projects</h2>
+                <ul className={styles.projectList}>
+                  <li className={styles.projectItem}>
+                    <div className={styles.projectTitle}>Portfolio Website</div>
+                    <div className={styles.projectBody}>
+                      A personal portfolio website featuring an interactive 3D
+                      black hole visualization built with React, TypeScript,
+                      React Three Fiber & WebGL. Includes real-time particle
+                      systems, orbital controls, and automated GitHub Pages
+                      deployment.
+                    </div>
+                  </li>
+                  <li className={styles.projectItem}>
+                    <div className={styles.projectTitle}>
+                      Budgeting App (in progress)
+                    </div>
+                    <div className={styles.projectBody}>
+                      • Tech stack: React Native, Expo, TypeScript, PostgreSQL,
+                      Kysely, TanStack Query, Turborepo.
+                      <br />
+                      • Designed and bootstrapped a budgeting app in a scalable
+                      monorepo using Turborepo and Expo.
+                      <br />
+                      • Implemented typed queries with Kysely and PostgreSQL for
+                      structured, maintainable backend logic.
+                      <br />
+                      • Used TanStack Query for eﬃcient client-side state and
+                      caching.
+                      <br />
+                      • Focused on clean architecture, oﬄine-first potential,
+                      and mobile responsiveness.
+                      <br />• Demonstrates strong understanding of project
+                      structure, mobile-first development, and toolchain setup.
+                    </div>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <div className={styles.section}>

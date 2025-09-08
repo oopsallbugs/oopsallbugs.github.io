@@ -2,7 +2,7 @@
   height: var(--wrapperPadding);
   flex-direction: row;
   display: flex;
-  font-size: 10px;
+  font-size: var(--font-size-xs);
 }
 
 .pageControls {
