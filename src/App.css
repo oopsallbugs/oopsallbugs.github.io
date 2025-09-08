@@ -1,6 +1,7 @@
 /* global styles */
 :root {
   --wrapperPadding: 30px;
+  height: fit-content;
 }
 
 .appWrapper {
@@ -8,7 +9,8 @@
   flex-direction: column;
   padding: var(--wrapperPadding);
   padding-bottom: 0;
-  height: 100vh;
+  height: 100%;
+  overflow: auto;
   background-color: #eee;
 }
 
