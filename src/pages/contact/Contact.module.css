@@ -1,6 +1,18 @@
 .content {
-  margin: 8px;
   font-size: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  margin: calc(var(--wrapperPadding) / 2);
+  padding: calc(var(--wrapperPadding) / 2);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-overlay-transparent);
+  transition: background-color var(--transition-normal);
+  pointer-events: auto;
+}
+
+.content:hover {
+  background-color: var(--bg-overlay-light);
+  transition: background-color var(--transition-normal);
 }
 
 .linkList {
@@ -22,5 +34,5 @@
 }
 
 .link:hover {
-  color: #f39c12;
+  color: #55f312;
 }

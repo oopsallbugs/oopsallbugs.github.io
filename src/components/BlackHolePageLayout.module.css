@@ -32,5 +32,4 @@
   z-index: 1000;
   width: fit-content;
   pointer-events: auto; /* Ensure UI elements are interactive */
-  padding: calc(var(--wrapperPadding) / 2);
 }

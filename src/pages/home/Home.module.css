@@ -1,9 +1,12 @@
 .content {
   padding: calc(var(--wrapperPadding) / 2);
+  margin: calc(var(--wrapperPadding) / 2);
   font-size: var(--font-size-lg);
   background-color: var(--bg-overlay-transparent);
   border-radius: var(--border-radius);
   transition: background-color var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .content:hover {
