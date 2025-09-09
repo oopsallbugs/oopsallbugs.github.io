@@ -1,12 +1,12 @@
 .footer {
-  height: var(--wrapperPadding);
+  height: var(--space-8);
   flex-direction: row;
   display: flex;
-  font-size: var(--font-size-xs);
+  font-size: var(--text-xs);
 }
 
 .pageControls {
-  gap: 12px;
+  gap: var(--space-3);
   display: flex;
   flex: 1;
 }
@@ -16,4 +16,5 @@
   align-items: center;
   justify-content: center;
   margin-left: auto;
+  margin-right: var(--space-1);
 }

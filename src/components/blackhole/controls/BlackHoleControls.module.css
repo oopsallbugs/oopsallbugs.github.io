@@ -1,14 +1,14 @@
 .controlsWindow {
   /* CSS Custom Properties for theming */
-  --primary-color: #00ffff;
-  --secondary-color: #ffffff;
-  --border-color: #333;
+  --primary-color: var(--accent-primary);
+  --secondary-color: var(--color-text-primary);
+  --border-color: var(--color-border);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: var(--radius-base);
+  padding: var(--space-4);
   color: var(--secondary-color);
-  font-family: "Courier New", monospace;
-  background-color: rgba(0, 0, 0, 0.4);
+  font-family: var(--font-family-primary);
+  background-color: var(--color-surface);
   backdrop-filter: blur(5px);
 }
 
@@ -16,7 +16,7 @@
 .particlesControls,
 .spiralLinesControls {
   color: var(--secondary-color);
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-4);
 }
 
 .controlsContent h3 {
@@ -25,11 +25,11 @@
 
 .controlGroup {
   cursor: pointer;
-  margin-left: 0.5rem;
+  margin-left: var(--space-2);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .rangeInput {

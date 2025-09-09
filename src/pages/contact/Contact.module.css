@@ -1,18 +1,18 @@
 .content {
-  font-size: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: var(--text-xl);
+  border: 1px solid var(--color-border);
   backdrop-filter: blur(10px);
-  margin: calc(var(--wrapperPadding) / 2);
-  padding: calc(var(--wrapperPadding) / 2);
-  border-radius: var(--border-radius);
-  background-color: var(--bg-overlay-transparent);
-  transition: background-color var(--transition-normal);
+  margin: var(--space-8);
+  padding: var(--space-4);
+  border-radius: var(--radius-base);
+  background-color: var(--color-surface);
+  transition: background-color var(--duration-normal);
   pointer-events: auto;
 }
 
 .content:hover {
-  background-color: var(--bg-overlay-light);
-  transition: background-color var(--transition-normal);
+  background-color: var(--color-surface-hover);
+  transition: background-color var(--duration-normal);
 }
 
 .linkList {
@@ -20,19 +20,19 @@
   justify-content: space-between;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .link {
-  color: #fff;
+  color: var(--color-text-primary);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color var(--duration-normal) var(--ease-out);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .link:hover {
-  color: #55f312;
+  color: var(--light-green-500);
 }

@@ -1,17 +1,17 @@
 .content {
-  padding: calc(var(--wrapperPadding) / 2);
-  margin: calc(var(--wrapperPadding) / 2);
-  font-size: var(--font-size-lg);
-  background-color: var(--bg-overlay-transparent);
-  border-radius: var(--border-radius);
-  transition: background-color var(--transition-normal);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-4);
+  margin: var(--space-8);
+  font-size: var(--text-lg);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-base);
+  transition: background-color var(--duration-normal);
+  border: 1px solid var(--color-border);
   backdrop-filter: blur(10px);
 }
 
 .content:hover {
-  background-color: var(--bg-overlay-light);
-  transition: background-color var(--transition-normal);
+  background-color: var(--color-surface-hover);
+  transition: background-color var(--duration-normal);
 }
 
 .introSection {
@@ -23,6 +23,6 @@
 .introText {
   justify-content: center;
   text-wrap: wrap;
-  color: var(--text-white);
+  color: var(--color-text-primary);
   font-weight: var(--font-weight-light);
 }

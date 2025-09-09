@@ -3,33 +3,33 @@
   width: 100%;
   background-color: transparent;
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--color-border);
 }
 
 .pageContentContainer {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  background-color: black;
-  border: 1px solid #000;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-background);
 }
 .navLocation {
   position: absolute;
-  z-index: 1000;
+  z-index: var(--z-overlay);
 }
 
 .content {
   text-align: center;
-  color: white;
-  margin: calc(var(--wrapperPadding));
+  color: var(--color-text-primary);
+  margin: calc(var(--space-8));
 }
 
 .content h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: var(--text-5xl);
+  margin-bottom: var(--space-4);
 }
 
 .content p {
-  font-size: 1.2rem;
+  font-size: var(--text-xl);
   opacity: 0.8;
 }

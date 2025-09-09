@@ -1,17 +1,17 @@
 /* Page Background */
 .pageContentContainer {
   height: calc(
-    100vh - (var(--wrapperPadding) * 2)
-  ); /* Adjust for header height */
+    100vh - (var(--space-16))
+  ); /* Adjusted for header and footer height */
   overflow: auto;
   background-image: url("/backgroundLQ.jpg");
   background-size: cover;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--color-border);
 }
 
 .content {
-  color: #f0f0f0;
-  z-index: 10;
+  color: var(--gray-100);
+  z-index: var(--z-base);
 }
 
 /* Headings */
@@ -22,11 +22,10 @@
 .skillsSection h1,
 .profileSection h1,
 .projectSection h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #fff;
+  font-size: var(--text-4xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
   text-align: left;
-  border-bottom: 2px solid #4f46e5;
 }
 
 .profileSection h2,
@@ -36,9 +35,9 @@
 .skillsSection h2,
 .profileSection h2,
 .projectSection h2 {
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: #e5e7eb;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gray-200);
   text-align: left;
 }
 
@@ -46,9 +45,10 @@
 .middleSection p,
 .educationSection p,
 .bottomSection p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #d1d5db;
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+  color: var(--gray-300);
   text-align: left;
 }
 
@@ -73,23 +73,23 @@
 .navSection {
   grid-column: 1;
   grid-row: 1;
-  z-index: 1000;
-  border-radius: var(--border-radius);
+  z-index: var(--z-overlay);
+  border-radius: var(--radius-base);
   max-width: fit-content;
 }
 
 .profileText {
-  margin-top: calc(var(--wrapperPadding) / 2);
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border-left: 4px solid #4f46e5;
-  transition: all 0.3s ease;
+  margin-top: var(--space-4);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--accent-primary);
+  transition: all var(--duration-normal) var(--ease-out);
 }
 
 .profileText:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateX(4px);
+  background: var(--color-surface-hover);
+  transform: translateX(var(--space-1));
 }
 
 /* Middle Section: Experience + Skills + Hobbies */
@@ -105,7 +105,7 @@
   flex-direction: column;
   flex: 2;
   height: 100%;
-  gap: calc(var(--wrapperPadding) / 2);
+  gap: var(--space-4);
   justify-content: space-between;
 }
 
@@ -136,16 +136,19 @@
 }
 
 .bottomSection .section {
-  height: calc(100% - var(--wrapperPadding));
+  height: calc(100% - var(--space-16));
 }
 
 /* Section Containers */
 .section {
-  padding: calc(var(--wrapperPadding) / 2);
-  margin: calc(var(--wrapperPadding) / 2);
-  background: var(--overlay-bg);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--space-4);
+  margin-top: var(--space-8);
+  margin-left: var(--space-8);
+  margin-bottom: var(--space-8);
+  margin-right: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
   height: fit-content;
   backdrop-filter: blur(10px);
 }
@@ -154,105 +157,105 @@
 .experienceList {
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(var(--wrapperPadding) / 2);
+  gap: var(--space-4);
   padding: 0;
   list-style: none;
-  margin-top: calc(var(--wrapperPadding) / 2);
+  margin-top: var(--space-4);
 }
 
 .experienceItem {
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border-left: 4px solid #4f46e5;
-  transition: all 0.3s ease;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--accent-primary);
+  transition: all var(--duration-normal) var(--ease-out);
 }
 
 .experienceItem:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateX(4px);
+  background: var(--color-surface-hover);
+  transform: translateX(var(--space-1));
 }
 
 .experienceTitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
   display: flex;
   align-items: center;
 }
 
 .experienceBody {
-  color: #d1d5db;
-  line-height: 1.6;
-  font-size: 0.95rem;
+  color: var(--gray-300);
+  line-height: var(--line-height-base);
+  font-size: var(--text-sm);
 }
 
 /* Projects */
 .projectList {
-  margin-top: calc(var(--wrapperPadding) / 2);
+  margin-top: var(--space-4);
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(var(--wrapperPadding) / 2);
+  gap: var(--space-4);
   padding: 0;
   list-style: none;
 }
 
 .projectItem {
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border-left: 4px solid #4f46e5;
-  transition: all 0.3s ease;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--accent-primary);
+  transition: all var(--duration-normal) var(--ease-out);
 }
 
 .projectItem:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateX(4px);
+  background: var(--color-surface-hover);
+  transform: translateX(var(--space-1));
 }
 
 .projectTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
 }
 
 .projectBody {
-  color: #d1d5db;
-  line-height: 1.6;
-  font-size: 0.95rem;
+  color: var(--gray-300);
+  line-height: var(--line-height-base);
+  font-size: var(--text-sm);
 }
 
 /* Skills */
 .skillsGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-  margin-top: 1rem;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
 }
 
 .skillCategory {
-  background: rgba(255, 255, 255, 0.05);
-  padding: calc(var(--wrapperPadding) / 2);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 4px solid #4f46e5;
-  transition: all 0.3s ease;
+  background: var(--color-surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--accent-primary);
+  transition: all var(--duration-normal) var(--ease-out);
 }
 
 .skillCategory:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateX(4px);
+  background: var(--color-surface-hover);
+  transform: translateX(var(--space-1));
 }
 
 .skillCategory h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #4f46e5;
-  padding-bottom: 0.5rem;
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--accent-primary);
+  padding-bottom: var(--space-2);
 }
 
 .skillCategory ul {
@@ -262,15 +265,15 @@
 }
 
 .skillCategory li {
-  color: #d1d5db;
-  margin-bottom: 0.5rem;
-  padding-left: 1rem;
+  color: var(--gray-300);
+  margin-bottom: var(--space-2);
+  padding-left: var(--space-4);
   position: relative;
 }
 
 .skillCategory li::before {
   content: "•";
-  color: #4f46e5;
+  color: var(--accent-primary);
   font-weight: bold;
   position: absolute;
   left: 0;
@@ -280,8 +283,8 @@
 .educationList {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: calc(var(--wrapperPadding) / 2);
+  gap: var(--space-6);
+  margin-top: var(--space-4);
   padding: 0;
   list-style: none;
 }
@@ -290,17 +293,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-left: 4px solid #4f46e5;
-  transition: all 0.3s ease;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--accent-primary);
+  transition: all var(--duration-normal) var(--ease-out);
 }
 
 .certificateItem:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-4px);
+  background: var(--color-surface-hover);
+  transform: translateY(calc(-1 * var(--space-1)));
 }
 
 .certificateImage {
@@ -308,9 +311,9 @@
   max-width: 400px;
   height: auto;
   cursor: pointer;
-  border-radius: 8px;
-  transition: transform 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-base);
+  transition: transform var(--duration-fast) var(--ease-out);
+  box-shadow: var(--shadow-lg);
 }
 
 .certificateImage:hover {
@@ -321,81 +324,81 @@
 .overlay {
   position: fixed;
   inset: 0;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-base);
   background: rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: var(--z-overlay);
   cursor: zoom-out;
 }
 
 .enlargedImage {
   max-width: 90%;
   max-height: 90%;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   touch-action: pinch-zoom;
 }
 
 /* Testimonials */
 .testimonialList {
-  margin-top: calc(var(--wrapperPadding) / 2);
+  margin-top: var(--space-4);
   display: grid;
   grid-template-columns: 1fr;
-  gap: calc(var(--wrapperPadding) / 2);
+  gap: var(--space-4);
   padding: 0;
   list-style: none;
 }
 
 .testimonialItem {
-  background: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border-left: 4px solid #10b981;
+  background: var(--color-surface);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--indigo-500);
   position: relative;
-  transition: all 0.3s ease;
+  transition: all var(--duration-normal) var(--ease-out);
 }
 
 .testimonialItem:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateX(4px);
+  background: var(--color-surface-hover);
+  transform: translateX(var(--space-1));
 }
 
 .testimonialQuote {
   font-style: italic;
-  color: #e5e7eb;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  font-size: 1rem;
+  color: var(--gray-200);
+  line-height: var(--line-height-base);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-base);
 }
 
 .testimonialAuthor {
-  color: #9ca3af;
-  font-weight: 500;
+  color: var(--gray-400);
+  font-weight: var(--font-weight-normal);
   text-align: right;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
 }
 
 /* Hobbies */
 .hobbiesList {
-  margin-top: calc(var(--wrapperPadding) / 2);
+  margin-top: var(--space-4);
   display: flex;
   flex-wrap: wrap;
-  padding: calc(var(--wrapperPadding) / 2);
-  gap: calc(var(--wrapperPadding) / 2);
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border-left: 4px solid #4f46e5;
-  transition: all 0.3s ease;
+  padding: var(--space-4);
+  gap: var(--space-4);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--accent-primary);
+  transition: all var(--duration-normal) var(--ease-out);
 }
 
 .hobbyTag {
   background: rgba(79, 70, 229, 0.2);
-  color: #a5b4fc;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  color: var(--indigo-500);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
   border: 1px solid rgba(79, 70, 229, 0.3);
 }
 
@@ -436,11 +439,11 @@
   }
 
   .content h1 {
-    font-size: 2rem;
+    font-size: var(--text-4xl);
   }
 
   .content h2 {
-    font-size: 1rem;
+    font-size: var(--text-base);
   }
 
   .educationList {
@@ -448,7 +451,7 @@
   }
 
   .experienceItem {
-    padding: 1rem;
+    padding: var(--space-4);
   }
   .topSection .section {
     max-width: 100%;
@@ -456,10 +459,10 @@
 }
 @media (max-width: 480px) {
   .content h1 {
-    font-size: 2rem;
+    font-size: var(--text-4xl);
   }
 
   .content h2 {
-    font-size: 0.8rem;
+    font-size: var(--text-sm);
   }
 }

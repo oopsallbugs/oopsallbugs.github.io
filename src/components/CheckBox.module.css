@@ -2,7 +2,7 @@
   display: flex;
   cursor: pointer;
   position: relative;
-  margin-top: 4px;
+  margin-top: var(--space-1);
 }
 
 .nativeCheckboxHidden {
@@ -17,20 +17,22 @@
 .checkboxVisual {
   width: 10px;
   height: 10px;
-  border: 1px solid #fff;
+  margin-top: 1px;
+  margin-left: var(--space-1);
+  border: 1px solid var(--gray-200);
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.2s ease-in-out;
+  transition: all var(--duration-fast) var(--ease-in-out);
 }
 
 .nativeCheckboxHidden:checked + .checkboxVisual {
-  background-color: #fff;
+  background-color: var(--gray-200);
 }
 
 .checkboxLabel {
-  font-size: 10px;
-  margin-left: 4px;
+  font-size: var(--text-xs);
+  margin-left: var(--space-1);
   user-select: none;
   line-height: 1;
 }
