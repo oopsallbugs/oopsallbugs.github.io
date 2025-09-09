@@ -56,7 +56,7 @@ const Footer = ({ context }: FooterProps) => {
         </div>
       )}
       <div className={styles.copyRight}>
-        <p>&copy; 2025 Sam Humphries</p>
+        <p>&copy; Sam Humphries</p>
       </div>
     </footer>
   );

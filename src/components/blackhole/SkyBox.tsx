@@ -13,12 +13,12 @@ const SkyBox = () => {
     // Add loading callbacks to debug
     loader.load(
       [
-        "/cubeMaps/space/resolutions/1024/px.png", // positive x
-        "/cubeMaps/space/resolutions/1024/nx.png", // negative x
-        "/cubeMaps/space/resolutions/1024/py.png", // positive y
-        "/cubeMaps/space/resolutions/1024/ny.png", // negative y
-        "/cubeMaps/space/resolutions/1024/pz.png", // positive z
-        "/cubeMaps/space/resolutions/1024/nz.png", // negative z
+        "/cubeMaps/space/1024/px.png", // positive x
+        "/cubeMaps/space/1024/nx.png", // negative x
+        "/cubeMaps/space/1024/py.png", // positive y
+        "/cubeMaps/space/1024/ny.png", // negative y
+        "/cubeMaps/space/1024/pz.png", // positive z
+        "/cubeMaps/space/1024/nz.png", // negative z
       ],
       // onLoad callback
       (texture) => {
