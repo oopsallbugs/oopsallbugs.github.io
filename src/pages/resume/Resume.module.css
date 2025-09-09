@@ -3,9 +3,10 @@
   height: calc(
     100vh - (var(--wrapperPadding) * 2)
   ); /* Adjust for header height */
-  overflow-y: auto;
+  overflow: auto;
   background-image: url("/backgroundLQ.jpg");
   background-size: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .content {

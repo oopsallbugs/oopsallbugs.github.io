@@ -66,9 +66,10 @@
   padding: var(--wrapperPadding);
   padding-bottom: 0;
   height: 100%;
-  background-color: var(--bg-secondary);
+  background-color: var(--color-black);
   overflow: auto;
   scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+  color: #fff;
 }
 
 .appWrapper::-webkit-scrollbar {
