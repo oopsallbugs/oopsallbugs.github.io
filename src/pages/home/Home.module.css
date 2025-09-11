@@ -25,7 +25,7 @@
   justify-content: center;
   text-wrap: wrap;
   color: var(--color-text-primary);
-  font-weight: var(--font-weight-light);
+  font-size: var(--text-xl);
 }
 
 @media (max-width: 480px) {
