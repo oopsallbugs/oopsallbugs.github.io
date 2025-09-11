@@ -19,6 +19,7 @@ const Resume = () => {
   return (
     <div className={styles.pageBackground}>
       <div className={styles.mainContent}>
+        {/* Top section: Navigation and Profile */}
         <div className={styles.topSection}>
           <div className={styles.navSection}>
             <Navigation />
@@ -44,7 +45,7 @@ const Resume = () => {
           </div>
         </div>
 
-        {/* Middle section: Experience/Education/Hobbies on left, Skills & Testimonials on right */}
+        {/* Middle section: Experience/Education/Hobbies/Projects on left, Skills & Testimonials on right */}
         <div className={styles.middleSection}>
           <div className={styles.leftColumn}>
             <div className={styles.section}>
