@@ -1,6 +1,8 @@
 import styles from "./Contact.module.css";
-import { LuArrowUpRight } from "react-icons/lu";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import ArrowUpRight from "../../components/icons/ArrowUpRight";
+import GitHub from "../../components/icons/GitHub";
+import LinkedIn from "../../components/icons/LinkedIn";
+import Envelope from "../../components/icons/Envelope";
 
 const Contact = () => {
   return (
@@ -14,11 +16,11 @@ const Contact = () => {
             className={styles.link}
           >
             <span className={styles.linkIconLeft}>
-              <FaGithub />
+              <GitHub />
             </span>
             <span className={styles.linkText}>GitHub</span>
             <span className={styles.linkIconRight}>
-              <LuArrowUpRight />
+              <ArrowUpRight />
             </span>
           </a>
         </li>
@@ -30,22 +32,22 @@ const Contact = () => {
             className={styles.link}
           >
             <span className={styles.linkIconLeft}>
-              <FaLinkedin />
+              <LinkedIn />
             </span>
             <span className={styles.linkText}>LinkedIn</span>
             <span className={styles.linkIconRight}>
-              <LuArrowUpRight />
+              <ArrowUpRight />
             </span>
           </a>
         </li>
         <li>
           <a href="mailto:samuel.c.humphries@gmail.com" className={styles.link}>
             <span className={styles.linkIconLeft}>
-              <FaEnvelope />
+              <Envelope />
             </span>
             <span className={styles.linkText}>Email</span>
             <span className={styles.linkIconRight}>
-              <LuArrowUpRight />
+              <ArrowUpRight />
             </span>
           </a>
         </li>
