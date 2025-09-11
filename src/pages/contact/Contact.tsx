@@ -13,7 +13,13 @@ const Contact = () => {
             rel="noopener noreferrer"
             className={styles.link}
           >
-            <FaGithub /> GitHub <LuArrowUpRight />
+            <span className={styles.linkIconLeft}>
+              <FaGithub />
+            </span>
+            <span className={styles.linkText}>GitHub</span>
+            <span className={styles.linkIconRight}>
+              <LuArrowUpRight />
+            </span>
           </a>
         </li>
         <li>
@@ -23,12 +29,24 @@ const Contact = () => {
             rel="noopener noreferrer"
             className={styles.link}
           >
-            <FaLinkedin /> LinkedIn <LuArrowUpRight />
+            <span className={styles.linkIconLeft}>
+              <FaLinkedin />
+            </span>
+            <span className={styles.linkText}>LinkedIn</span>
+            <span className={styles.linkIconRight}>
+              <LuArrowUpRight />
+            </span>
           </a>
         </li>
         <li>
           <a href="mailto:samuel.c.humphries@gmail.com" className={styles.link}>
-            <FaEnvelope /> Email <LuArrowUpRight />
+            <span className={styles.linkIconLeft}>
+              <FaEnvelope />
+            </span>
+            <span className={styles.linkText}>Email</span>
+            <span className={styles.linkIconRight}>
+              <LuArrowUpRight />
+            </span>
           </a>
         </li>
       </ul>
