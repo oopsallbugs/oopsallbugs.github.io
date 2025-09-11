@@ -16,20 +16,30 @@
   position: relative;
 }
 
-/* Top Left: Navigation positioning */
-.topLeft {
+/* Navigation positioning */
+.navContainer {
   position: absolute;
   top: 0;
   left: 0;
   z-index: var(--z-overlay);
 }
 
-/* Bottom Right: Intro - Also floats above animation */
-.bottomRight {
+/* Main Content */
+.mainContent {
   position: absolute;
   bottom: 0;
   right: 0;
   z-index: var(--z-overlay);
   width: fit-content;
-  pointer-events: auto; /* Ensure UI elements are interactive */
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  .navContainer {
+    width: 100%;
+  }
+
+  .mainContent {
+    width: 100%;
+  }
 }

@@ -23,16 +23,16 @@ const BlackHolePageLayout = ({
           camera={enableCamera}
           skyBox={enableSkyBox}
         />
-        {/* Title + Navigation (Defaults absolute top left) */}
+        {/* Title + Navigation */}
         {!enableControls && (
-          <div className={styles.topLeft}>
+          <div className={styles.navContainer}>
             <Navigation />
           </div>
         )}
 
-        {/* Dynamic Content (Bottom Right) */}
+        {/* Dynamic Content */}
         {!enableControls && (
-          <div className={styles.bottomRight}>{children}</div>
+          <div className={styles.mainContent}>{children}</div>
         )}
       </div>
     </div>
