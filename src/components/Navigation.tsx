@@ -5,7 +5,7 @@ const Navigation = () => {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.name}>Sam Humphries</h1>
+        <h1 className={styles.name}>SAM HUMPHRIES</h1>
         <h2 className={styles.title}>Software Developer</h2>
       </header>
 

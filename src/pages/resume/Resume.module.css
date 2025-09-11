@@ -60,7 +60,6 @@
   user-select: none;
   font-size: var(--text-base);
   line-height: var(--line-height-base);
-  color: var(--gray-200);
 }
 
 .profileText:hover {
@@ -132,7 +131,7 @@
 }
 
 .experienceBody {
-  color: var(--gray-200);
+  color: var(--color-text-primary);
   line-height: var(--line-height-base);
   font-size: var(--text-base);
 }
@@ -266,7 +265,7 @@
 }
 
 .projectBody {
-  color: var(--gray-200);
+  color: var(--color-text-primary);
   line-height: var(--line-height-base);
   font-size: var(--text-base);
 }
@@ -328,7 +327,7 @@
 }
 
 .skillCategory li {
-  color: var(--gray-200);
+  color: var(--color-text-primary);
   margin-bottom: var(--space-2);
   padding-left: var(--space-4);
   position: relative;
@@ -336,7 +335,7 @@
 
 .skillCategory li::before {
   content: "•";
-  color: var(--gray-200);
+  color: var(--color-text-primary);
   font-weight: bold;
   position: absolute;
   left: 0;
@@ -373,14 +372,14 @@
 
 .testimonialQuote {
   font-style: italic;
-  color: var(--gray-200);
+  color: var(--color-text-primary);
   line-height: var(--line-height-base);
   margin-bottom: var(--space-4);
   font-size: var(--text-base);
 }
 
 .testimonialAuthor {
-  color: var(--gray-400);
+  color: var(--gray-300);
   font-weight: var(--font-weight-normal);
   text-align: right;
   font-size: var(--text-sm);
@@ -407,7 +406,7 @@
 .projectSection h2 {
   font-size: var(--text-2xl);
   font-weight: var(--font-weight-semibold);
-  color: var(--gray-200);
+  color: var(--color-text-primary);
   text-align: left;
   user-select: none;
 }
@@ -418,7 +417,7 @@
   font-size: var(--text-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-base);
-  color: var(--gray-300);
+  color: var(--color-text-primary);
   text-align: left;
   user-select: none;
 }
