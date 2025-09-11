@@ -49,6 +49,7 @@ const BlackHoleControls = ({
   };
 
   return (
+    // TODO: improve layout & fix slider movement bugs
     <div className={styles.controlsWindow}>
       {showControls && (
         <div className={styles.controlsContent}>

@@ -1,5 +1,4 @@
 .controlsWindow {
-  /* CSS Custom Properties for theming */
   --primary-color: var(--accent-primary);
   --secondary-color: var(--color-text-primary);
   --border-color: var(--color-border);

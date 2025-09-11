@@ -6,7 +6,7 @@
 
 .controlsOverlay {
   position: absolute;
-  bottom: var(--space-8);
-  left: var(--space-8);
+  bottom: var(--space-4);
+  left: var(--space-4);
   z-index: 10;
 }
