@@ -6,30 +6,28 @@
   border: 2px solid var(--color-border);
 }
 
-.pageContentContainer {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background-color: var(--color-background);
-  border: 1px solid var(--color-background);
-}
 .navLocation {
   position: absolute;
   z-index: var(--z-overlay);
 }
 
 .content {
+  height: calc(100% - var(--space-16));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: var(--color-text-primary);
   margin: calc(var(--space-8));
 }
 
 .content h1 {
+  font-family: "Nabla", cursive;
   font-size: var(--text-5xl);
   margin-bottom: var(--space-4);
 }
 
 .content p {
   font-size: var(--text-xl);
-  opacity: 0.8;
 }

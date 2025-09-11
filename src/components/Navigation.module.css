@@ -25,6 +25,7 @@
 }
 
 .name {
+  font-family: "Nabla", cursive;
   font-size: var(--text-3xl);
   font-weight: var(--font-weight-normal);
   margin: 0 0 var(--space-2) 0;
