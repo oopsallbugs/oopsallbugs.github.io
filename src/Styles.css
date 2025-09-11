@@ -11,6 +11,9 @@
   --space-10: 2.5rem; /* 40px */
   --space-12: 3rem; /* 48px */
   --space-16: 4rem; /* 64px */
+  --space-20: 5rem; /* 80px */
+  --space-22: 5.5rem; /* 88px */
+  --space-24: 6rem; /* 96px */
 
   /* Colors */
   --color-white: #ffffff;
@@ -45,6 +48,99 @@
 
   --accent-primary: var(--indigo-600);
   --accent-hover: var(--indigo-500);
+
+  /* accent gradients */
+  --accent-gradient: linear-gradient(
+    -45deg,
+    #03001e,
+    #7303c0,
+    #ec38bc,
+    #fdeff9
+  );
+  --accent-gradient-1: linear-gradient(
+    -45deg,
+    #072156,
+    #094cad,
+    #047afd,
+    #2aa0f2
+  );
+  --accent-gradient-2: linear-gradient(
+    -45deg,
+    #1f2055,
+    #574292,
+    #7a6eb1,
+    #9a9ae8
+  );
+  --accent-gradient-3: linear-gradient(
+    -45deg,
+    #3a6073,
+    #4b8b8f,
+    #5bc6ab,
+    #6ef1c4
+  );
+  --accent-gradient-4: linear-gradient(
+    -45deg,
+    #fefdff,
+    #d4edee,
+    #9fccb9,
+    #1fb564
+  );
+  --accent-gradient-5: linear-gradient(
+    -45deg,
+    #f0f2f0,
+    #cacaca,
+    #8f8f8f,
+    #3b3b3b
+  );
+  --accent-gradient-6: linear-gradient(
+    135deg,
+    #fefffd,
+    #d9d0f9,
+    #afaced,
+    #686bd9
+  );
+  --accent-gradient-7: linear-gradient(
+    -45deg,
+    #8c0404,
+    #e4392d,
+    #f05c20,
+    #f89812
+  );
+  --accent-gradient-9: linear-gradient(
+    135deg,
+    #aad06c,
+    #9dc64f,
+    #459025,
+    #2d5f06
+  );
+  --accent-gradient-10: linear-gradient(
+    -45deg,
+    #1f4474,
+    #256d89,
+    #5398a9,
+    #45afb4
+  );
+  --accent-gradient-11: linear-gradient(
+    -45deg,
+    #3a6073,
+    #4b8b8f,
+    #5bc6ab,
+    #6ef1c4
+  );
+  --accent-gradient-12: linear-gradient(
+    -45deg,
+    #012226,
+    #00c0a9,
+    #19af8a,
+    #0f7641
+  );
+  --accent-gradient-13: linear-gradient(
+    135deg,
+    #ffe558,
+    #f8b645,
+    #e89a44,
+    #cf651d
+  );
 
   --color-background: var(--gray-950);
   --color-surface: rgba(255, 255, 255, 0.05);
