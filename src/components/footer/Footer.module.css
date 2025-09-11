@@ -17,4 +17,5 @@
   justify-content: center;
   margin-left: auto;
   margin-right: var(--space-1);
+  user-select: none;
 }

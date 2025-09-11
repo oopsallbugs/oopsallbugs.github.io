@@ -19,6 +19,7 @@
 /* Section Containers */
 .section {
   padding: var(--space-4);
+  padding-top: var(--space-2);
   margin-top: var(--space-4);
   margin-left: var(--space-4);
   background: var(--color-surface);
@@ -46,7 +47,7 @@
 }
 
 .profileText {
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
   padding: var(--space-4);
   border-top: 2px solid;
   border-right: 2px solid;
@@ -56,6 +57,10 @@
   border-image-source: var(--accent-gradient);
   background: var(--color-surface);
   transition: all var(--duration-normal) var(--ease-out);
+  user-select: none;
+  font-size: var(--text-base);
+  line-height: var(--line-height-base);
+  color: var(--gray-200);
 }
 
 .profileText:hover {
@@ -92,11 +97,11 @@
   gap: var(--space-4);
   padding: 0;
   list-style: none;
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
 }
 
 .experienceItem {
-  padding: var(--space-6);
+  padding: var(--space-4);
   background: var(--color-surface);
   border-top: 2px solid;
   border-right: 2px solid;
@@ -105,6 +110,7 @@
   border-image-slice: 1;
   border-image-source: var(--accent-gradient-10);
   transition: all var(--duration-normal) var(--ease-out);
+  user-select: none;
 }
 
 .experienceItem:hover {
@@ -126,9 +132,9 @@
 }
 
 .experienceBody {
-  color: var(--gray-300);
+  color: var(--gray-200);
   line-height: var(--line-height-base);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
 }
 
 /* Education */
@@ -136,7 +142,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: var(--space-4);
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
   list-style: none;
 }
 
@@ -195,7 +201,7 @@
 
 /* Hobbies */
 .hobbiesList {
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
   display: flex;
   flex-wrap: wrap;
   padding: var(--space-4);
@@ -208,6 +214,7 @@
   border-image-slice: 1;
   border-image-source: var(--accent-gradient-11);
   transition: all var(--duration-normal) var(--ease-out);
+  user-select: none;
 }
 
 .hobbyTag {
@@ -221,7 +228,7 @@
 
 /* Projects */
 .projectList {
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
@@ -230,7 +237,7 @@
 }
 
 .projectItem {
-  padding: var(--space-6);
+  padding: var(--space-4);
   background: var(--color-surface);
   border-top: 2px solid;
   border-right: 2px solid;
@@ -239,6 +246,7 @@
   border-image-slice: 1;
   border-image-source: var(--accent-gradient-2);
   transition: all var(--duration-normal) var(--ease-out);
+  user-select: none;
 }
 
 .projectItem:hover {
@@ -258,9 +266,9 @@
 }
 
 .projectBody {
-  color: var(--gray-300);
+  color: var(--gray-200);
   line-height: var(--line-height-base);
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
 }
 
 .rightColumn {
@@ -280,7 +288,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
 }
 
 .skillCategory {
@@ -294,6 +302,7 @@
   border-image-slice: 1;
   border-image-source: var(--accent-gradient-7);
   transition: all var(--duration-normal) var(--ease-out);
+  user-select: none;
 }
 
 .skillCategory:hover {
@@ -305,7 +314,7 @@
   font-size: var(--text-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-primary);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
   border-bottom: 1px solid;
   border-image-slice: 1;
   border-image-source: var(--accent-gradient-7);
@@ -335,7 +344,7 @@
 
 /* Testimonials */
 .testimonialList {
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-4);
@@ -354,6 +363,7 @@
   border-image-source: var(--accent-gradient-13);
   position: relative;
   transition: all var(--duration-normal) var(--ease-out);
+  user-select: none;
 }
 
 .testimonialItem:hover {
@@ -399,6 +409,7 @@
   font-weight: var(--font-weight-semibold);
   color: var(--gray-200);
   text-align: left;
+  user-select: none;
 }
 
 .profileSection p,
@@ -409,6 +420,7 @@
   line-height: var(--line-height-base);
   color: var(--gray-300);
   text-align: left;
+  user-select: none;
 }
 
 /* Responsive */
