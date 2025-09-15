@@ -2,15 +2,94 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Critical inline CSS for immediate rendering -->
+    <style>
+      /* Critical reset and base styles */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        overflow-x: hidden;
+      }
+      #root {
+        height: 100vh;
+        width: 100vw;
+      }
+      body {
+        font-family: "Space Grotesk", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #030712;
+        color: #f9fafb;
+        line-height: 1.3;
+      }
+      /* Critical app wrapper styles */
+      .appWrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        padding-bottom: 0;
+        height: 100%;
+        background-color: #030712;
+        overflow: auto;
+        color: #f9fafb;
+      }
+      .appContent {
+        flex: 1;
+      }
+      /* Critical styles for LCP element */
+      ._introText_mjq0w_24,
+      ._linkList_11xra_17,
+      ._section_1trjr_20 {
+        opacity: 0;
+        animation: fadeIn 0.5s ease-in-out 0.1s forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+
+    <!-- Preconnect to external domains for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Preload critical fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Nabla&family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap&family=Nabla&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap&family=Nabla&display=swap"
+    /></noscript>
+
+    <!-- Preload critical JavaScript modules -->
+    <link rel="modulepreload" href="/src/main.tsx" />
+    <link rel="modulepreload" href="/src/App.tsx" />
+    <link rel="modulepreload" href="/src/pages/home/Home.tsx" />
+
+    <!-- Prefetch Three.js chunks for faster loading when user enables 3D -->
+    <link rel="prefetch" href="/src/components/blackhole/BlackHoleCanvas.tsx" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sam H</title>
+    <meta
+      name="description"
+      content="Sam Humphries - Software Engineer Portfolio"
+    />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <title>Sam Humphries</title>
   </head>
   <body>
     <div id="root"></div>
