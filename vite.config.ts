@@ -23,7 +23,7 @@ export default defineConfig({
     },
     chunkSizeWarningLimit: 1024,
     sourcemap: false,
-    target: "es2025",
+    target: "es2020",
   },
 
   // TODO: Set the correct base for GitHub Pages
