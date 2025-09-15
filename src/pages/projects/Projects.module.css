@@ -23,7 +23,7 @@
 }
 
 .content h1 {
-  font-family: "Nabla", cursive;
+  font-family: "Nabla", "space grotesk", sans-serif;
   font-size: var(--text-5xl);
   margin-bottom: var(--space-4);
 }
