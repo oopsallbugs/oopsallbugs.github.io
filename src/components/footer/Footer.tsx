@@ -5,9 +5,11 @@ export interface FooterOutletContext {
   enableCamera?: boolean;
   enableControls?: boolean;
   enableSkyBox?: boolean;
+  disableOverlay?: boolean;
   setEnableCamera?: (value: boolean) => void;
   setEnableControls?: (value: boolean) => void;
   setEnableSkyBox?: (value: boolean) => void;
+  setDisableOverlay?: (value: boolean) => void;
 }
 
 interface FooterProps {
@@ -32,6 +34,11 @@ const Footer = ({ context }: FooterProps) => {
       setterKey: "setEnableSkyBox",
       label: "Sky Box",
     },
+    {
+      key: "disableOverlay",
+      setterKey: "setDisableOverlay",
+      label: "Hide Text",
+    },
   ] as const;
 
   // Filter to only show controls that exist in the current context
@@ -49,7 +56,7 @@ const Footer = ({ context }: FooterProps) => {
             <Checkbox
               key={control.key}
               label={control.label}
-              initialChecked={context[control.key]}
+              checked={Boolean(context[control.key])}
               onChange={context[control.setterKey]}
             />
           ))}
