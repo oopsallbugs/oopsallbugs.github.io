@@ -1,8 +1,9 @@
 import type {
   BlackHoleControlsProps,
-  BlackHoleSphereProps,
+  BlackHoleSphereMutableProps,
   SpiralLinesProps,
   ParticlesProps,
+  ControlConfig,
 } from "../blackHoleTypes";
 import {
   blackHoleSphereControlsConfig,
@@ -11,6 +12,45 @@ import {
 } from "../blackHoleTypes";
 import { useState } from "react";
 import styles from "./BlackHoleControls.module.css";
+
+// Generic control renderer
+function renderControl<T, K extends keyof T>(
+  key: K,
+  config: ControlConfig,
+  value: T[K],
+  onChange: (key: K, value: T[K]) => void
+) {
+  if (config.type === "range") {
+    return (
+      <div className={styles.controlGroup} key={String(key)}>
+        <label className={styles.controlLabel}>{config.name}:</label>
+        <input
+          type="range"
+          className={styles.rangeInput}
+          min={config.min}
+          max={config.max}
+          step={config.step}
+          value={value as number}
+          onChange={(e) => onChange(key, parseFloat(e.target.value) as T[K])}
+        />
+      </div>
+    );
+  }
+  if (config.type === "color") {
+    return (
+      <div className={styles.controlGroup} key={String(key)}>
+        <label>{config.name}:</label>
+        <input
+          type="color"
+          className={styles.colorInput}
+          value={value as string}
+          onChange={(e) => onChange(key, e.target.value as T[K])}
+        />
+      </div>
+    );
+  }
+  return null;
+}
 
 const BlackHoleControls = ({
   showControls,
@@ -21,335 +61,86 @@ const BlackHoleControls = ({
   particlesProps,
   onParticlesPropsChange,
 }: BlackHoleControlsProps) => {
-  const [showBlackHoleControls, setShowBlackHoleControls] =
-    useState<boolean>(false);
-  const [showSpiralControls, setShowSpiralControls] = useState<boolean>(false);
-  const [showParticlesControls, setShowParticlesControls] =
-    useState<boolean>(false);
+  const [showBlackHoleControls, setShowBlackHoleControls] = useState(false);
+  const [showSpiralControls, setShowSpiralControls] = useState(false);
+  const [showParticlesControls, setShowParticlesControls] = useState(false);
 
-  const updateSphereProperty = <K extends keyof BlackHoleSphereProps>(
-    property: K,
-    value: BlackHoleSphereProps[K]
+  // Handlers
+  const handleSphereChange = <K extends keyof BlackHoleSphereMutableProps>(
+    key: K,
+    value: BlackHoleSphereMutableProps[K]
   ) => {
-    onSphereMutablePropsChange({ ...sphereMutableProps, [property]: value });
+    onSphereMutablePropsChange({ ...sphereMutableProps, [key]: value });
   };
 
-  const updateSpiralLinesProperty = <K extends keyof SpiralLinesProps>(
-    property: K,
+  const handleSpiralChange = <K extends keyof SpiralLinesProps>(
+    key: K,
     value: SpiralLinesProps[K]
   ) => {
-    onSpiralLinesPropsChange({ ...spiralLinesProps, [property]: value });
+    onSpiralLinesPropsChange({ ...spiralLinesProps, [key]: value });
   };
 
-  const updateParticlesProperty = <K extends keyof ParticlesProps>(
-    property: K,
+  const handleParticlesChange = <K extends keyof ParticlesProps>(
+    key: K,
     value: ParticlesProps[K]
   ) => {
-    onParticlesPropsChange({ ...particlesProps, [property]: value });
+    onParticlesPropsChange({ ...particlesProps, [key]: value });
   };
 
   return (
-    // TODO: improve layout & fix slider movement bugs
     <div className={styles.controlsWindow}>
       {showControls && (
         <div className={styles.controlsContent}>
           {/* Black Hole Controls */}
-          <h3 onClick={() => setShowBlackHoleControls(!showBlackHoleControls)}>
+          <h3 onClick={() => setShowBlackHoleControls((v) => !v)}>
             Black Hole
           </h3>
           {showBlackHoleControls && (
             <div className={styles.blackHoleSphereControls}>
-              <div className={styles.controlGroup}>
-                <label>Radius: {sphereMutableProps.radius}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={blackHoleSphereControlsConfig.radius.min}
-                  max={blackHoleSphereControlsConfig.radius.max}
-                  step={blackHoleSphereControlsConfig.radius.step}
-                  value={sphereMutableProps.radius}
-                  onChange={(e) =>
-                    updateSphereProperty("radius", parseFloat(e.target.value))
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Color:</label>
-                <input
-                  type="color"
-                  value={sphereMutableProps.color}
-                  onChange={(e) =>
-                    updateSphereProperty("color", e.target.value)
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Glow Color:</label>
-                <input
-                  type="color"
-                  value={sphereMutableProps.glow}
-                  onChange={(e) => updateSphereProperty("glow", e.target.value)}
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Glow Intensity:</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={blackHoleSphereControlsConfig.glowIntensity.min}
-                  max={blackHoleSphereControlsConfig.glowIntensity.max}
-                  step={blackHoleSphereControlsConfig.glowIntensity.step}
-                  value={sphereMutableProps.glowIntensity}
-                  onChange={(e) =>
-                    updateSphereProperty(
-                      "glowIntensity",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
+              {Object.entries(blackHoleSphereControlsConfig).map(
+                ([key, config]) =>
+                  renderControl<
+                    BlackHoleSphereMutableProps,
+                    keyof BlackHoleSphereMutableProps
+                  >(
+                    key as keyof BlackHoleSphereMutableProps,
+                    config,
+                    sphereMutableProps[
+                      key as keyof BlackHoleSphereMutableProps
+                    ],
+                    handleSphereChange
+                  )
+              )}
             </div>
           )}
 
           {/* Spiral Controls */}
-          <h3 onClick={() => setShowSpiralControls(!showSpiralControls)}>
-            Spiral
-          </h3>
+          <h3 onClick={() => setShowSpiralControls((v) => !v)}>Spiral</h3>
           {showSpiralControls && (
             <div className={styles.spiralLinesControls}>
-              <div className={styles.controlGroup}>
-                <label>Line Count: {spiralLinesProps.lineCount}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={SpiralLinesControlsConfig.lineCount.min}
-                  max={SpiralLinesControlsConfig.lineCount.max}
-                  step={SpiralLinesControlsConfig.lineCount.step}
-                  value={spiralLinesProps.lineCount}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty(
-                      "lineCount",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>
-                  Spiral Radius: {spiralLinesProps.spiralRadius.toFixed(1)}
-                </label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={SpiralLinesControlsConfig.spiralRadius.min}
-                  max={SpiralLinesControlsConfig.spiralRadius.max}
-                  step={SpiralLinesControlsConfig.spiralRadius.step}
-                  value={spiralLinesProps.spiralRadius}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty(
-                      "spiralRadius",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>
-                  Distance from Center: {spiralLinesProps.distanceToCenter}
-                </label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={SpiralLinesControlsConfig.distanceToCenter.min}
-                  max={SpiralLinesControlsConfig.distanceToCenter.max}
-                  step={SpiralLinesControlsConfig.distanceToCenter.step}
-                  value={spiralLinesProps.distanceToCenter}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty(
-                      "distanceToCenter",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>
-                  Rotations: {spiralLinesProps.numRotationsToCenter}
-                </label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={SpiralLinesControlsConfig.numRotationsToCenter.min}
-                  max={SpiralLinesControlsConfig.numRotationsToCenter.max}
-                  step={SpiralLinesControlsConfig.numRotationsToCenter.step}
-                  value={spiralLinesProps.numRotationsToCenter}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty(
-                      "numRotationsToCenter",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Segments: {spiralLinesProps.segments}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={SpiralLinesControlsConfig.segments.min}
-                  max={SpiralLinesControlsConfig.segments.max}
-                  step={SpiralLinesControlsConfig.segments.step}
-                  value={spiralLinesProps.segments}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty(
-                      "segments",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Spiral Speed: {spiralLinesProps.spiralSpeed}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={SpiralLinesControlsConfig.spiralSpeed.min}
-                  max={SpiralLinesControlsConfig.spiralSpeed.max}
-                  step={SpiralLinesControlsConfig.spiralSpeed.step}
-                  value={spiralLinesProps.spiralSpeed}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty(
-                      "spiralSpeed",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Color:</label>
-                <input
-                  type="color"
-                  value={spiralLinesProps.color}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty("color", e.target.value)
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Line Width: {spiralLinesProps.lineWidth}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={SpiralLinesControlsConfig.lineWidth.min}
-                  max={SpiralLinesControlsConfig.lineWidth.max}
-                  step={SpiralLinesControlsConfig.lineWidth.step}
-                  value={spiralLinesProps.lineWidth}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty(
-                      "lineWidth",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Opacity: {spiralLinesProps.opacity}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={SpiralLinesControlsConfig.opacity.min}
-                  max={SpiralLinesControlsConfig.opacity.max}
-                  step={SpiralLinesControlsConfig.opacity.step}
-                  value={spiralLinesProps.opacity}
-                  onChange={(e) =>
-                    updateSpiralLinesProperty(
-                      "opacity",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
+              {Object.entries(SpiralLinesControlsConfig).map(([key, config]) =>
+                renderControl<SpiralLinesProps, keyof SpiralLinesProps>(
+                  key as keyof SpiralLinesProps,
+                  config,
+                  spiralLinesProps[key as keyof SpiralLinesProps],
+                  handleSpiralChange
+                )
+              )}
             </div>
           )}
 
           {/* Particles Controls */}
-          <h3 onClick={() => setShowParticlesControls(!showParticlesControls)}>
-            Particles
-          </h3>
+          <h3 onClick={() => setShowParticlesControls((v) => !v)}>Particles</h3>
           {showParticlesControls && (
             <div className={styles.particlesControls}>
-              <div className={styles.controlGroup}>
-                <label>Particle Count: {particlesProps.particleCount}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={ParticlesControlsConfig.particleCount.min}
-                  max={ParticlesControlsConfig.particleCount.max}
-                  step={ParticlesControlsConfig.particleCount.step}
-                  value={particlesProps.particleCount}
-                  onChange={(e) =>
-                    updateParticlesProperty(
-                      "particleCount",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Size: {particlesProps.size}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={ParticlesControlsConfig.size.min}
-                  max={ParticlesControlsConfig.size.max}
-                  step={ParticlesControlsConfig.size.step}
-                  value={particlesProps.size}
-                  onChange={(e) =>
-                    updateParticlesProperty("size", parseFloat(e.target.value))
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Color:</label>
-                <input
-                  type="color"
-                  value={particlesProps.color}
-                  onChange={(e) =>
-                    updateParticlesProperty("color", e.target.value)
-                  }
-                />
-              </div>
-
-              <div className={styles.controlGroup}>
-                <label>Opacity: {particlesProps.opacity}</label>
-                <input
-                  type="range"
-                  className={styles.rangeInput}
-                  min={ParticlesControlsConfig.opacity.min}
-                  max={ParticlesControlsConfig.opacity.max}
-                  step={ParticlesControlsConfig.opacity.step}
-                  value={particlesProps.opacity}
-                  onChange={(e) =>
-                    updateParticlesProperty(
-                      "opacity",
-                      parseFloat(e.target.value)
-                    )
-                  }
-                />
-              </div>
+              {Object.entries(ParticlesControlsConfig).map(([key, config]) =>
+                renderControl<ParticlesProps, keyof ParticlesProps>(
+                  key as keyof ParticlesProps,
+                  config,
+                  particlesProps[key as keyof ParticlesProps],
+                  handleParticlesChange
+                )
+              )}
             </div>
           )}
         </div>

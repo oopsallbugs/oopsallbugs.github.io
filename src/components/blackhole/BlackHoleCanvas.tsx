@@ -2,10 +2,13 @@ import styles from "./BlackHoleCanvas.module.css";
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 import SkyBox from "./SkyBox";
 import BlackHoleSphere from "./BlackHoleSphere";
 import Particles from "./Particles";
 import SpiralLines from "./SpiralLines";
+import { deviceCapabilities } from "../../utils/deviceDetection";
+import LoadingSpinner from "../LoadingSpinner";
 
 import BlackHoleControls from "./controls/BlackHoleControls";
 import type {
@@ -20,6 +23,9 @@ import {
   SpiralLinesControlsConfig,
   ParticlesControlsConfig,
 } from "./blackHoleTypes";
+
+// Enable THREE.js caching for better performance (only when this component loads)
+THREE.Cache.enabled = true;
 
 // combine all black hole elements and position them
 function BlackHoleScene({
@@ -54,11 +60,13 @@ const BlackHoleCanvas = ({
   camera: boolean;
   skyBox: boolean;
 }) => {
+  const [isSkyboxLoading, setIsSkyboxLoading] = useState(false);
+
   // Create default sphere props from config
   const defaultSphereProps: BlackHoleSphereMutableProps = {
     radius: blackHoleSphereControlsConfig.radius.default,
-    color: blackHoleSphereControlsConfig.color,
-    glow: blackHoleSphereControlsConfig.glow,
+    color: blackHoleSphereControlsConfig.color.default,
+    glow: blackHoleSphereControlsConfig.glow.default,
     glowIntensity: blackHoleSphereControlsConfig.glowIntensity.default,
   };
 
@@ -84,7 +92,7 @@ const BlackHoleCanvas = ({
       SpiralLinesControlsConfig.numRotationsToCenter.default,
     segments: SpiralLinesControlsConfig.segments.default,
     spiralSpeed: SpiralLinesControlsConfig.spiralSpeed.default,
-    color: SpiralLinesControlsConfig.color,
+    color: SpiralLinesControlsConfig.color.default,
     lineWidth: SpiralLinesControlsConfig.lineWidth.default,
     opacity: SpiralLinesControlsConfig.opacity.default,
   };
@@ -97,13 +105,21 @@ const BlackHoleCanvas = ({
   // Always use the current state, regardless of controls visibility
   const activeSpiralLinesProps = spiralLinesProps;
 
-  // Create default Particles props from config
+  // Create default Particles props from config with device adaptation
   const defaultParticlesProps = {
-    particleCount: ParticlesControlsConfig.particleCount.default,
+    particleCount: deviceCapabilities.preferredParticleCount,
     size: ParticlesControlsConfig.size.default,
-    color: ParticlesControlsConfig.color,
+    color: ParticlesControlsConfig.color.default,
     opacity: ParticlesControlsConfig.opacity.default,
     blackHoleRadius: defaultSphereProps.radius,
+    coneAngle: ParticlesControlsConfig.coneAngle.default,
+    radialSpeed: ParticlesControlsConfig.radialSpeed.default,
+    spiralSpeed: ParticlesControlsConfig.spiralSpeed.default,
+    turbulence: ParticlesControlsConfig.turbulence.default,
+    minDrawRadiusModifier:
+      ParticlesControlsConfig.minDrawRadiusModifier.default,
+    maxDrawRadiusModifier:
+      ParticlesControlsConfig.maxDrawRadiusModifier.default,
   };
 
   // State for mutable Particles properties only
@@ -124,7 +140,9 @@ const BlackHoleCanvas = ({
           position: "absolute",
         }}
       >
-        {skyBox && <SkyBox />}
+        {skyBox && (
+          <SkyBox enabled={skyBox} onLoadingStateChange={setIsSkyboxLoading} />
+        )}
         {camera && <OrbitControls />}
         <ambientLight intensity={0.4} />
         <spotLight
@@ -154,6 +172,13 @@ const BlackHoleCanvas = ({
             particlesProps={particlesProps}
             onParticlesPropsChange={setParticlesProps}
           />
+        </div>
+      )}
+
+      {/* Show loading spinner only if skybox is enabled but still loading */}
+      {skyBox && isSkyboxLoading && (
+        <div className={styles.skyboxLoadingOverlay}>
+          <LoadingSpinner />
         </div>
       )}
     </div>

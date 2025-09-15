@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useCallback } from "react";
 import type { ParticlesProps } from "./blackHoleTypes";
 
 const Particles = ({
@@ -9,23 +9,23 @@ const Particles = ({
   color,
   opacity,
   blackHoleRadius,
+  coneAngle,
+  radialSpeed,
+  spiralSpeed,
+  turbulence,
+  minDrawRadiusModifier,
+  maxDrawRadiusModifier,
 }: ParticlesProps) => {
   const particlesRef = useRef<THREE.Points>(null);
+  const clockRef = useRef(new THREE.Clock());
 
   const initialMinDrawRadius = blackHoleRadius + 0.2;
-  const minDrawRadius = blackHoleRadius + 10;
-  const maxDrawRadius = blackHoleRadius + 20;
+  const minDrawRadius = blackHoleRadius + minDrawRadiusModifier;
+  const maxDrawRadius = blackHoleRadius + maxDrawRadiusModifier;
 
-  // Parameters to tweak
-  const coneAngle = Math.PI / 6; // 60° cone
-  const radialSpeed = 0.025; // faster/slower fall into black hole (lower number = more rotations)
-  const spiralSpeed = 0.25; // faster/slower spiral motion (higher number = faster spin)
-
-  // Precompute positions
-  const { positions } = useMemo(() => {
-    const positions = new Float32Array(particleCount * 3);
-
-    const drawParticle = (i3: number) => {
+  // Memoized particle generation function
+  const generateParticle = useCallback(
+    (positions: Float32Array, i3: number) => {
       const radius = THREE.MathUtils.lerp(
         initialMinDrawRadius,
         maxDrawRadius,
@@ -43,22 +43,61 @@ const Particles = ({
       positions[i3] = px;
       positions[i3 + 1] = py;
       positions[i3 + 2] = pz;
-    };
+    },
+    [initialMinDrawRadius, maxDrawRadius, coneAngle]
+  );
 
-    //
+  // Memoized respawn function
+  const respawnParticle = useCallback(
+    (positions: Float32Array, i3: number) => {
+      const radius = THREE.MathUtils.lerp(
+        minDrawRadius,
+        maxDrawRadius,
+        Math.random()
+      );
+      const angle = Math.random() * Math.PI * 2;
+      const maxHeight = Math.tan(coneAngle) * radius;
+      const pyNew = (Math.random() * 2 - 1) * maxHeight;
+      positions[i3] = radius * Math.cos(angle);
+      positions[i3 + 1] = pyNew;
+      positions[i3 + 2] = radius * Math.sin(angle);
+    },
+    [minDrawRadius, maxDrawRadius, coneAngle]
+  );
+
+  // Memoized positions and geometry
+  const { geometry } = useMemo(() => {
+    const positions = new Float32Array(particleCount * 3);
+
     for (let i = 0; i < particleCount; i++) {
-      drawParticle(i * 3);
+      generateParticle(positions, i * 3);
     }
 
-    return { positions };
-  }, [particleCount, initialMinDrawRadius, maxDrawRadius, coneAngle]);
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
-  useFrame((_, delta) => {
+    return { geometry };
+  }, [particleCount, generateParticle]);
+
+  // Memoized material
+  const material = useMemo(() => {
+    return new THREE.PointsMaterial({
+      size,
+      color,
+      transparent: true,
+      opacity,
+      blending: THREE.AdditiveBlending,
+    });
+  }, [size, color, opacity]);
+
+  useFrame(() => {
     if (!particlesRef.current) return;
 
+    const delta = clockRef.current.getDelta();
     const positionsArray = particlesRef.current.geometry.attributes.position
       .array as Float32Array;
 
+    // Use batch processing for better performance
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3;
 
@@ -70,24 +109,15 @@ const Particles = ({
 
       // Respawn particle if it reaches the black hole
       if (r < blackHoleRadius) {
-        const radius = THREE.MathUtils.lerp(
-          minDrawRadius,
-          maxDrawRadius,
-          Math.random()
-        );
-        const angle = Math.random() * Math.PI * 2;
-        const maxHeight = Math.tan(coneAngle) * radius;
-        const pyNew = (Math.random() * 2 - 1) * maxHeight;
-        positionsArray[i3] = radius * Math.cos(angle);
-        positionsArray[i3 + 1] = pyNew;
-        positionsArray[i3 + 2] = radius * Math.sin(angle);
+        respawnParticle(positionsArray, i3);
         continue;
       }
 
       // Normalized radial vector toward black hole
-      const nx = -px / r;
-      const ny = -py / r;
-      const nz = -pz / r;
+      const invR = 1 / r;
+      const nx = -px * invR;
+      const ny = -py * invR;
+      const nz = -pz * invR;
 
       // Strong radial pull
       let vx = nx * radialSpeed;
@@ -105,10 +135,10 @@ const Particles = ({
       vx += tx * spiralSpeed;
       vz += tz * spiralSpeed;
 
-      // Small random turbulence
-      vx += (Math.random() - 0.5) * 0.1;
-      vy += (Math.random() - 0.5) * 0.1;
-      vz += (Math.random() - 0.5) * 0.1;
+      // Add random turbulence
+      vx += (Math.random() - 0.5) * turbulence;
+      vy += (Math.random() - 0.5) * turbulence;
+      vz += (Math.random() - 0.5) * turbulence;
 
       // Update position
       positionsArray[i3] += vx * delta;
@@ -119,20 +149,15 @@ const Particles = ({
     particlesRef.current.geometry.attributes.position.needsUpdate = true;
   });
 
-  return (
-    <points ref={particlesRef}>
-      <bufferGeometry>
-        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-      </bufferGeometry>
-      <pointsMaterial
-        size={size}
-        color={color}
-        transparent
-        opacity={opacity}
-        blending={THREE.AdditiveBlending}
-      />
-    </points>
-  );
+  // Cleanup on unmount
+  useRef(() => {
+    return () => {
+      geometry.dispose();
+      material.dispose();
+    };
+  });
+
+  return <points ref={particlesRef} geometry={geometry} material={material} />;
 };
 
 export default Particles;

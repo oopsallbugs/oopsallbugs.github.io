@@ -74,6 +74,7 @@
   grid-template-rows: auto auto auto;
   align-items: start;
   margin-right: 1px;
+  margin-bottom: var(--space-4);
 }
 
 .leftColumn {
@@ -81,6 +82,12 @@
   flex-direction: column;
   flex: 2;
   height: 100%;
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .experienceSection,
@@ -268,13 +275,6 @@
   color: var(--color-text-primary);
   line-height: var(--line-height-base);
   font-size: var(--text-base);
-}
-
-.rightColumn {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  margin-bottom: var(--space-4);
 }
 
 /* Skills */

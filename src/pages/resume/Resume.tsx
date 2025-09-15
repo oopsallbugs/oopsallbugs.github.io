@@ -106,16 +106,19 @@ const Resume = () => {
             </div>
 
             <div className={styles.section}>
-              <div className={styles.hobbiesSection}>
-                <h2>Hobbies & interests</h2>
-                <div className={styles.hobbiesList}>
-                  {hobbies.map((hobby, index) => (
-                    <span key={index} className={styles.hobbyTag}>
-                      {hobby.title}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              <h2>Testimonials</h2>
+              <ul className={styles.testimonialList}>
+                {testimonials.map((testimonial, index) => (
+                  <li key={index} className={styles.testimonialItem}>
+                    <div className={styles.testimonialQuote}>
+                      {testimonial.quote}
+                    </div>
+                    <div className={styles.testimonialAuthor}>
+                      - {testimonial.author}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             <div className={styles.section}>
@@ -161,19 +164,16 @@ const Resume = () => {
             </div>
 
             <div className={styles.section}>
-              <h2>Testimonials</h2>
-              <ul className={styles.testimonialList}>
-                {testimonials.map((testimonial, index) => (
-                  <li key={index} className={styles.testimonialItem}>
-                    <div className={styles.testimonialQuote}>
-                      {testimonial.quote}
-                    </div>
-                    <div className={styles.testimonialAuthor}>
-                      - {testimonial.author}
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              <div className={styles.hobbiesSection}>
+                <h2>Hobbies & interests</h2>
+                <div className={styles.hobbiesList}>
+                  {hobbies.map((hobby, index) => (
+                    <span key={index} className={styles.hobbyTag}>
+                      {hobby.title}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -3,34 +3,62 @@
   --secondary-color: var(--color-text-primary);
   --border-color: var(--color-border);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-base);
   padding: var(--space-4);
   color: var(--secondary-color);
   font-family: var(--font-family-primary);
   background-color: var(--color-surface);
   backdrop-filter: blur(5px);
+  z-index: calc(var(--z-tooltip) + 100);
 }
 
 .blackHoleSphereControls,
 .particlesControls,
 .spiralLinesControls {
   color: var(--secondary-color);
-  margin-bottom: var(--space-4);
+  border: 1px solid var(--border-color);
+}
+
+.blackHoleSphereControls,
+.spiralLinesControls {
+  margin-bottom: var(--space-2);
 }
 
 .controlsContent h3 {
   cursor: pointer;
+  font-size: var(--text-lg);
 }
 
 .controlGroup {
   cursor: pointer;
-  margin-left: var(--space-2);
+  margin: var(--space-2);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
+  width: 300px;
 }
 
-.rangeInput {
-  max-width: 150px;
+.controlLabel {
+  margin-right: var(--space-2);
+  flex: 1 1 50%;
+  text-align: left;
+  user-select: none;
+}
+
+.rangeInput,
+.colorInput {
+  cursor: pointer;
+  accent-color: var(--primary-color);
+  width: 50%;
+}
+
+.colorInput {
+  padding: var(--space-1);
+  padding-right: 0;
+}
+
+@media (max-width: 480px) {
+  .controlGroup {
+    width: 100%;
+    margin-left: 0;
+  }
 }

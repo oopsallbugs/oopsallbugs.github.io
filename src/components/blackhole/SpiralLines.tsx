@@ -16,6 +16,7 @@ const SpiralLines = ({
   opacity,
 }: SpiralLinesProps) => {
   const groupRef = useRef<THREE.Group>(null);
+  const clockRef = useRef(new THREE.Clock());
 
   // Store original points that never change
   const originalLines = useMemo(() => {
@@ -53,9 +54,22 @@ const SpiralLines = ({
     segments,
   ]);
 
+  // Memoize line material properties
+  const lineProps = useMemo(
+    () => ({
+      color,
+      lineWidth,
+      transparent: true,
+      opacity,
+      dashed: false,
+    }),
+    [color, lineWidth, opacity]
+  );
+
   // Animate by rotating the entire group instead of individual points
-  useFrame((_, delta) => {
+  useFrame(() => {
     if (groupRef.current) {
+      const delta = clockRef.current.getDelta();
       groupRef.current.rotation.y -= delta * spiralSpeed;
     }
   });
@@ -63,15 +77,7 @@ const SpiralLines = ({
   return (
     <group ref={groupRef}>
       {originalLines.map((points, index) => (
-        <Line
-          key={index}
-          points={points}
-          color={color}
-          lineWidth={lineWidth}
-          transparent
-          opacity={opacity}
-          dashed={false}
-        />
+        <Line key={index} points={points} {...lineProps} />
       ))}
     </group>
   );

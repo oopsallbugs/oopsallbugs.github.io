@@ -1,15 +1,3 @@
-// Resume data configuration
-// Edit this file to update resume content without touching the component
-
-// HOW TO UPDATE:
-// - Profile: Edit the profileText string (use \n\n for paragraph breaks)
-// - Experience: Add/edit items in experienceItems array
-// - Certificates: Add new certificate URLs to certificates array
-// - Hobbies: Add/remove strings from hobbies array
-// - Projects: Add/edit projects in projects array
-// - Skills: Add/edit skill categories and their associated skills
-// - Testimonials: Add/edit testimonials with quote and author
-
 export interface ExperienceItem {
   title: string;
   responsibilities: string[];
@@ -39,12 +27,29 @@ export interface HobbiesItem {
   title: string;
 }
 
+// Resume data configuration
+// Edit this file to update resume content without touching the component
+
+// HOW TO UPDATE:
+// - Profile: Edit the profileText string (use \n\n for paragraph breaks)
+// - Experience: Add/edit items in experienceItems array
+// - Certificates: Add new certificate URLs to certificates array
+// - Hobbies: Add/remove strings from hobbies array
+// - Projects: Add/edit projects in projects array
+// - Skills: Add/edit skill categories and their associated skills
+// - Testimonials: Add/edit testimonials with quote and author
+
 // \n\n adds paragraph breaks (enter, enter)
-export const profileText: string = `Former electrician with 9 years of hands-on, customer-facing experience, now bringing a practical, detail-oriented mindset to software development. Rapid self-learner who quickly gained practical experience with Python, FastAPI, and frontend frameworks to deliver backend improvements and build full-featured frontend pages during a fast-paced Agile internship.
+export const profileText: string = `
+Former electrician with 9 years of customer-facing experience, now applying that same practical, detail-oriented mindset to software development. 
+Motivated self-learner skilled in full-stack development with JavaScript/TypeScript, React, Node.js, and PostgreSQL, with a focus on clean architecture and maintainable code.
 
-Skilled in full-stack development using JavaScript/TypeScript, React, Node.js, and PostgreSQL, with a strong focus on clean architecture principles. Experienced in designing secure APIs, implementing token-based authentication, and eﬃciently managing state on both client and server sides to ensure smooth, responsive user experiences and reliable backend operations.
+Experienced in building secure APIs, implementing token-based authentication, and managing state across client & server to deliver responsive user experiences and reliable backend operations. 
+Strong collaborator in Agile teams, writing testable, scalable code.
 
-Known for eﬀective collaboration in team environments, embracing Agile methodologies, and writing maintainable, testable code. Passionate about creating user-centric applications that solve real-world problems and improve workflow eﬃciency, supported by leadership and mentoring experience in high-pressure technical roles.`;
+Driven by curiosity, a commitment to continuous learning and a proactive approach to problem-solving.
+Adaptable and quick to learn new technologies, with a proven ability to thrive in fast-paced, dynamic workplaces.
+`;
 
 export const experienceItems: ExperienceItem[] = [
   {
@@ -52,31 +57,31 @@ export const experienceItems: ExperienceItem[] = [
     responsibilities: [
       "Joined a small Agile-based team for a two-month internship.",
       "Rapidly learned Python and FastAPI to contribute to backend development.",
-      "Refactored token management and caching systems, resolving systematic login and sync issues by improving access control, session handling, token storage and security by enforcing separation of concerns and single responsibility.",
+      "Refactored token management and caching systems, resolving login and sync issues by improving access control, session handling, token storage and security.",
       "Worked closely with other interns to integrate UI toolkit components, increasing consistency across the UI.",
-      "Independently developed a frontend page for managing users from an external system, owning the full development lifecycle from implementation to testing.",
+      "Independently developed an admin page for managing users from an external system, owning the full development lifecycle from implementation to testing.",
       "Frontend refactor to separate the single file dashboard into separate components.",
-      "Used Git and GitHub for collaboration, code reviews, and version control.",
+      "Used Git and GitHub for collaboration, code reviews and version control.",
     ],
   },
   {
     title: "Full-Stack Projects - Mission Ready - (2024 - 2025)",
     responsibilities: [
-      "Designed an AI assistant using Gemini API, React, and Express. Built question workflows and used user feedback to improve relevance.",
+      "Designed AI chatbot assistants using Gemini API, React and Express. Built question workflows and used user feedback to improve relevance.",
       "CLI Tool: Created a modular Node.js command-line app with full CRUD logic for managing tasks. Focused on clean architecture and reusable modules.",
-      "Dynamic Web Apps: Developed React/Express apps with user login, API routes, and persistent data (PostgreSQL).",
+      "Dynamic Web Apps: Developed React/Express apps with user login, API routes and persistent data.",
       "Integrated basic role-based access control and deployed to the cloud.",
-      "Gained real experience with Agile planning, debugging, team-based Git workflows, and user testing.",
+      "Gained real experience with Agile planning, debugging, team-based Git workflows and user testing.",
     ],
   },
   {
     title: "Registered Electrician - (2017 - 2023)",
     responsibilities: [
-      "Independently diagnosed and repaired electrical faults in residential, commercial, and industrial systems under time pressure.",
+      "Independently diagnosed and repaired electrical faults in residential, commercial and industrial systems under time pressure.",
       "Mentored apprentices, helping them build technical and safety skills while supervising installations.",
-      "Managed on-site builds of washing machine assembly lines, coordinating trades and ensuring quality control.",
-      "Led an international installation project overseas, demonstrating leadership, communication, and reliability.",
-      "Developed systems thinking by working with interdependent components — now directly applied to systems design in software.",
+      "Led an international installation project overseas, demonstrating leadership, communication and reliability.",
+      "Managed builds of washing machine assembly lines, coordinating improvements and assembly questions to R&D ensuring quality control.",
+      "Developed systems thinking by working with interdependent components - now directly applied to systems design in software.",
     ],
   },
 ];
@@ -118,8 +123,10 @@ export const projects: ProjectItem[] = [
   {
     title: "Portfolio Website",
     description: [
-      "• A personal portfolio website featuring an interactive 3D black hole visualization built with React, TypeScript, React Three Fiber & WebGL.",
-      "• Includes real-time particle systems, orbital controls, and automated GitHub Pages deployment.",
+      "• Featuring an interactive 3D black hole visualization built with React, TypeScript, React Three Fiber & WebGL.",
+      "• Includes real-time particle systems, orbital camera controls and sky box.",
+      "• Responsive design for optimal viewing on various screen sizes.",
+      "• Source code available on GitHub.",
     ],
   },
   {
@@ -129,8 +136,8 @@ export const projects: ProjectItem[] = [
       "• Designed and bootstrapped a budgeting app in a scalable monorepo using Turborepo and Expo.",
       "• Implemented typed queries with Kysely and PostgreSQL for structured, maintainable backend logic.",
       "• Used TanStack Query for eﬃcient client-side state and caching.",
-      "• Focused on clean architecture, oﬄine-first potential, and mobile responsiveness.",
-      "• Demonstrates strong understanding of project structure, mobile-first development, and toolchain setup.",
+      "• Focused on clean architecture, oﬄine-first potential and responsive design.",
+      "• Demonstrates strong understanding of project structure and toolchain setup.",
     ],
   },
 ];
@@ -140,7 +147,7 @@ export const skillCategories: SkillCategory[] = [
     title: "Languages & Scripting",
     skills: [
       "JavaScript, TypeScript, Python, HTML/CSS, SQL",
-      "Used across frontend, backend, and scripting tasks.",
+      "Used across frontend, backend and scripting tasks.",
     ],
   },
   {
@@ -176,7 +183,8 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       "Git/GitHub - feature branching, pull requests, resolving conflicts.",
       "Docker - containerized app environments for consistency and portability.",
-      "Postman/Bruno - API testing, authentication flows, and endpoint debugging.",
+      "Vite - modern frontend build tool with built-in HMR and optimized production builds.",
+      "Postman/Bruno - API testing, authentication flows and endpoint debugging.",
       "CLI tools - Bash, npm scripts, development workflow automation.",
       "Turborepo - monorepo setup and task orchestration for full-stack projects.",
     ],
@@ -203,11 +211,11 @@ export const testimonials: TestimonialItem[] = [
   {
     quote:
       "[Sam has] exemplary technical skills, ability to learn and adaptability. [Sam] has been a very adaptable developer since the beginning. He has always been able to get things working even outside of his expertise [...]",
-    author: "Rawinder Singh, RevoTech",
+    author: "Rawinder S, RevoTech",
   },
   {
     quote:
       "[Sam] has a deep curiosity and passion for software development. His thoughtful contributions to discussions, and the quality of his project work, clearly demonstrate his abilities as a developer, and his desire to learn and grow [...]",
-    author: "Cameron McEwing, Mission Ready",
+    author: "Cameron M, Mission Ready",
   },
 ];
