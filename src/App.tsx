@@ -10,48 +10,40 @@ const App = () => {
   const [enableCamera, setEnableCamera] = useState(false);
   const [enableControls, setEnableControls] = useState(false);
   const [enableSkyBox, setEnableSkyBox] = useState(false);
+  const [disableOverlay, setDisableOverlay] = useState(false);
+
+  // Pages that use the black hole layout
+  const blackHolePages = ["/", "/home", "/contact"];
+  const useBlackHoleLayout = blackHolePages.includes(location.pathname);
 
   const getPageContext = (): FooterOutletContext => {
-    switch (location.pathname) {
-      case "/":
-      case "/home":
-      case "/contact":
-        return {
-          enableCamera,
-          enableControls,
-          enableSkyBox,
-          setEnableCamera,
-          setEnableControls,
-          setEnableSkyBox,
-        };
-      case "/projects":
-        return {
-          // Projects page might want some controls in the future
-          // For now, empty object means no footer controls
-        };
-      case "/resume":
-        return {
-          // Resume page context - add any needed controls here
-        };
-      default:
-        return {};
+    if (useBlackHoleLayout) {
+      return {
+        enableCamera,
+        enableControls,
+        enableSkyBox,
+        disableOverlay,
+        setEnableCamera,
+        setEnableControls,
+        setEnableSkyBox,
+        setDisableOverlay,
+      };
     }
+    // Default empty context for other pages
+    return {};
   };
 
   const currentPageContext = getPageContext();
 
-  // Pages that should use the black hole layout
-  const blackHolePages = ["/", "/home", "/contact"];
-  const shouldUseBlackHoleLayout = blackHolePages.includes(location.pathname);
-
   return (
     <div className="appWrapper">
       <main className="appContent">
-        {shouldUseBlackHoleLayout ? (
+        {useBlackHoleLayout ? (
           <BlackHolePageLayout
             enableCamera={enableCamera}
             enableControls={enableControls}
             enableSkyBox={enableSkyBox}
+            disableOverlay={disableOverlay}
           >
             <Outlet context={currentPageContext} />
           </BlackHolePageLayout>
