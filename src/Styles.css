@@ -194,6 +194,8 @@
   --duration-slow: 500ms;
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --scale-base: 1.02;
+  --scale-lg: 1.05;
 
   /* Z-index */
   --z-base: 1;

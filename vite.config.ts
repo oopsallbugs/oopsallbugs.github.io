@@ -26,7 +26,7 @@ export default defineConfig({
     target: "es2020",
   },
 
-  // TODO: Set the correct base for GitHub Pages
-  // For project pages: e.g., 'https://<username>.github.io/<repo-name>/'
-  // base: "/my-repo-name/",
+  // If you are deploying to https://<USERNAME>.github.io/, or to a custom domain through GitHub Pages (eg. www.example.com), set base to '/'.
+  // Alternatively, you can remove base from the configuration, as it defaults to '/'.
+  base: "/",
 });

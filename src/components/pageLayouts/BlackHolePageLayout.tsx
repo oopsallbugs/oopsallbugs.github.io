@@ -1,12 +1,10 @@
 import { Suspense, lazy, useRef } from "react";
 import styles from "./BlackHolePageLayout.module.css";
-import Navigation from "../components/Navigation";
-import LoadingSpinner from "../components/LoadingSpinner";
+import Navigation from "../navigation/Navigation";
+import LoadingSpinner from "../LoadingSpinner";
 
 // Lazy load the Three.js canvas component
-const BlackHoleCanvas = lazy(
-  () => import("../components/blackhole/BlackHoleCanvas")
-);
+const BlackHoleCanvas = lazy(() => import("../blackHole/BlackHoleCanvas"));
 
 interface BlackHolePageLayoutProps {
   children: React.ReactNode;

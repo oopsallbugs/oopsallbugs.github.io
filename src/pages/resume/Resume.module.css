@@ -64,7 +64,6 @@
 
 .profileText:hover {
   background: var(--color-surface-hover);
-  transform: translateX(var(--space-1));
 }
 
 /* Middle Section */
@@ -121,7 +120,6 @@
 
 .experienceItem:hover {
   background: var(--color-surface-hover);
-  transform: translateX(var(--space-1));
 }
 
 .experienceTitle {
@@ -170,7 +168,7 @@
 
 .certificateItem:hover {
   background: var(--color-surface-hover);
-  transform: translateY(calc(-1 * var(--space-1)));
+  transform: scale(var(--scale-base));
 }
 
 .certificateImage {
@@ -183,7 +181,7 @@
 }
 
 .certificateImage:hover {
-  transform: scale(1.05);
+  transform: scale(var(--scale-lg));
 }
 
 /* Overlay */
@@ -223,6 +221,10 @@
   user-select: none;
 }
 
+.hobbiesList:hover {
+  background: var(--color-surface-hover);
+}
+
 .hobbyTag {
   background: var(--accent-gradient-11);
   font-weight: var(--font-weight-semibold);
@@ -230,6 +232,11 @@
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
   font-size: var(--text-sm);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.hobbyTag:hover {
+  transform: scale(var(--scale-lg));
 }
 
 /* Projects */
@@ -257,7 +264,6 @@
 
 .projectItem:hover {
   background: var(--color-surface-hover);
-  transform: translateX(var(--space-1));
 }
 
 .projectTitle {
@@ -306,7 +312,6 @@
 
 .skillCategory:hover {
   background: var(--color-surface-hover);
-  transform: translateX(var(--space-1));
 }
 
 .skillCategory h3 {
@@ -367,7 +372,6 @@
 
 .testimonialItem:hover {
   background: var(--color-surface-hover);
-  transform: translateX(var(--space-1));
 }
 
 .testimonialQuote {

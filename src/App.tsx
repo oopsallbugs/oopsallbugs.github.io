@@ -3,7 +3,7 @@ import "./App.css";
 import Footer from "./components/footer/Footer";
 import { useState } from "react";
 import type { FooterOutletContext } from "./components/footer/Footer";
-import BlackHolePageLayout from "./components/BlackHolePageLayout";
+import BlackHolePageLayout from "./components/pageLayouts/BlackHolePageLayout";
 
 const App = () => {
   const location = useLocation();

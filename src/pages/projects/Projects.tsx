@@ -1,4 +1,4 @@
-import Navigation from "../../components/Navigation";
+import Navigation from "../../components/navigation/Navigation";
 import styles from "./Projects.module.css";
 
 const Projects = () => {

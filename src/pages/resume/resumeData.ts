@@ -144,10 +144,10 @@ export const projects: ProjectItem[] = [
 
 export const skillCategories: SkillCategory[] = [
   {
-    title: "Languages & Scripting",
+    title: "Languages",
     skills: [
       "JavaScript, TypeScript, Python, HTML/CSS, SQL",
-      "Used across frontend, backend and scripting tasks.",
+      "Used across frontend, backend and scripting tasks",
     ],
   },
   {
@@ -155,14 +155,14 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       "React (including custom hooks, context API)",
       "React Native (Expo)",
-      "Responsive design and UI component libraries",
-      "Comfortable translating wireframes into accessible, functional interfaces.",
+      "Responsive design, Chakra UI, Tailwind CSS",
+      "Comfortable translating wireframes into accessible, functional interfaces",
     ],
   },
   {
     title: "Backend & APIs",
     skills: [
-      "Node.js, Express, FastAPI, REST API",
+      "Node.js, Express, FastAPI",
       "RESTful API design and integration",
       "Authentication & role-based access control",
       "Token-based authentication (JWT)",
@@ -181,12 +181,12 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Dev Tools & Workflows",
     skills: [
-      "Git/GitHub - feature branching, pull requests, resolving conflicts.",
-      "Docker - containerized app environments for consistency and portability.",
-      "Vite - modern frontend build tool with built-in HMR and optimized production builds.",
-      "Postman/Bruno - API testing, authentication flows and endpoint debugging.",
-      "CLI tools - Bash, npm scripts, development workflow automation.",
-      "Turborepo - monorepo setup and task orchestration for full-stack projects.",
+      "Git/GitHub - feature branching, pull requests, resolving conflicts",
+      "Docker - containerized app environments for consistency and portability",
+      "Vite - modern frontend build tool with built-in HMR and optimized production builds",
+      "Postman/Bruno - API testing, authentication flows and endpoint debugging",
+      "CLI tools - Bash, npm scripts, development workflow automation",
+      "Turborepo - monorepo setup and task orchestration for full-stack projects",
     ],
   },
   {
