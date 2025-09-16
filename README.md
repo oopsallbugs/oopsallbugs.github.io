@@ -1,74 +1,103 @@
-# React + TypeScript + Vite
+# Sam Humphries Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+This is a personal portfolio site built with [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), and [Vite](https://vitejs.dev/).  
+It features interactive pages, a 3D black hole visualization, and is deployed to GitHub Pages.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Home, Resume, Projects, Contact** pages
+- Responsive design with CSS Modules
+- Custom navigation and footer components
+- 3D Black Hole visualization (Three.js)
+- Accessible, fast, and optimized for modern browsers
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+```
+public/
+  cubeMaps/         # CubeMaps dir
+    scene/          # Texture selection
+      resolution/   # Resolution selection
+  backgroundLQ.jpg  # Resume background image
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+src/
+  components/     # Reusable UI components (Navigation, Footer, BlackHole, Icons, etc.)
+  pages/          # Page-level components (home, resume, projects, contact)
+  utils/          # Device detection and texture caching
+  styles.css      # Global CSS variables and styles
+  reset.css       # CSS reset
+  index.css       # Base styles
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+vite.config.ts    # Vite configuration
+tsconfig.json     # TypeScript configuration
+.eslintrc         # ESLint configuration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+### Prerequisites
 
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [pnpm](https://pnpm.io/) package manager
+
+### Install dependencies
+
+```sh
+pnpm install
 ```
 
-Credits:
-Space cube map images: NASA/Goddard Space Flight Center Scientific Visualization Studio. Gaia DR2: ESA/Gaia/DPAC. Constellation figures based on those developed for the IAU by Alan MacRobert of Sky and Telescope magazine (Roger Sinnott and Rick Fienberg). https://svs.gsfc.nasa.gov/4851#29967
+### Development
 
-Resume background image: https://www.pexels.com/photo/blue-and-purple-cosmic-sky-956999/
+Start the local dev server:
+
+```sh
+pnpm dev
+```
+
+### Build
+
+Create a production build:
+
+```sh
+pnpm build
+```
+
+### Preview Production Build
+
+```sh
+pnpm preview
+```
+
+### Lint
+
+Check code quality:
+
+```sh
+pnpm lint
+```
+
+### Deploy
+
+Deploy to GitHub Pages:
+
+```sh
+pnpm deploy
+```
+
+## Code Style
+
+- TypeScript strict mode
+- CSS Modules for styling
+- ESLint with recommended rules
+- 2-space indentation, no semicolons
+
+See [`AGENTS.md`](AGENTS.md) for detailed code style and project guidelines.
+
+---
+
+## Credits
+
+- Space cube map images: NASA/Goddard Space Flight Center Scientific Visualization Studio. Gaia DR2: ESA/Gaia/DPAC. Constellation figures based on those developed for the IAU by Alan MacRobert of Sky and Telescope magazine (Roger Sinnott and Rick Fienberg). [Source](https://svs.gsfc.nasa.gov/4851#29967)
+- Resume background image: [Pexels](https://www.pexels.com/photo/blue-and-purple-cosmic-sky-956999/)

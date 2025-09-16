@@ -21,7 +21,7 @@ export default defineConfig({
         },
       },
     },
-    chunkSizeWarningLimit: 1024,
+    chunkSizeWarningLimit: 1100,
     sourcemap: false,
     target: "es2020",
   },
