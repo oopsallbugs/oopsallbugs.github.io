@@ -1,7 +1,5 @@
 # Sam Humphries Portfolio
 
----
-
 This is a personal portfolio site built with [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), and [Vite](https://vitejs.dev/).  
 It features interactive pages, a 3D black hole visualization, and is deployed to GitHub Pages.
 
@@ -78,9 +76,11 @@ Check code quality:
 pnpm lint
 ```
 
-### Deploy
+### Deployment
 
-Deploy to GitHub Pages:
+Automatic deployment to GitHub Pages on master branch merge.
+
+To deploy manually:
 
 ```sh
 pnpm deploy
