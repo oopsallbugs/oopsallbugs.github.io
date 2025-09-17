@@ -93,7 +93,10 @@ const Particles = ({
   useFrame(() => {
     if (!particlesRef.current) return;
 
-    const delta = clockRef.current.getDelta();
+    let delta = clockRef.current.getDelta();
+    // Cap delta to avoid large animation jumps when not focused
+    delta = Math.min(delta, 0.05);
+
     const positionsArray = particlesRef.current.geometry.attributes.position
       .array as Float32Array;
 
@@ -105,10 +108,11 @@ const Particles = ({
       const py = positionsArray[i3 + 1];
       const pz = positionsArray[i3 + 2];
 
+      // Distance from black hole center
       const r = Math.sqrt(px * px + py * py + pz * pz);
 
-      // Respawn particle if it reaches the black hole
-      if (r < blackHoleRadius) {
+      // Respawn particle if it reaches the black hole or goes out of bounds
+      if (r < blackHoleRadius || r > maxDrawRadius) {
         respawnParticle(positionsArray, i3);
         continue;
       }
