@@ -6,7 +6,6 @@ import * as THREE from "three";
 import SkyBox from "./SkyBox";
 import BlackHoleSphere from "./BlackHoleSphere";
 import Particles from "./Particles";
-import SpiralLines from "./SpiralLines";
 import { deviceCapabilities } from "../../utils/deviceDetection";
 import LoadingSpinner from "../LoadingSpinner";
 
@@ -14,13 +13,11 @@ import BlackHoleControls from "./controls/BlackHoleControls";
 import type {
   BlackHoleSphereProps,
   BlackHoleSphereMutableProps,
-  SpiralLinesProps,
   ParticlesProps,
 } from "./blackHoleTypes";
 import {
   blackHoleSphereControlsConfig,
   blackHoleSphereFixedProps,
-  SpiralLinesControlsConfig,
   ParticlesControlsConfig,
 } from "./blackHoleTypes";
 
@@ -31,12 +28,10 @@ THREE.Cache.enabled = true;
 function BlackHoleScene({
   position = [0, 0, 0],
   sphereProps,
-  spiralLinesProps,
   particlesProps,
 }: {
   position?: [number, number, number];
   sphereProps: BlackHoleSphereProps;
-  spiralLinesProps: SpiralLinesProps;
   particlesProps: ParticlesProps;
 }) {
   // Get the black hole radius from the sphere props for a consistent black hole effect
@@ -46,7 +41,6 @@ function BlackHoleScene({
     <group position={position}>
       <BlackHoleSphere {...sphereProps} />
       <Particles {...particlesProps} blackHoleRadius={blackHoleRadius} />
-      <SpiralLines {...spiralLinesProps} />
     </group>
   );
 }
@@ -83,28 +77,6 @@ const BlackHoleCanvas = ({
   // Always use the current state, regardless of controls visibility
   const activeSphereProps = completeSphereProps(sphereMutableProps);
 
-  // create default SpiralLines props from config
-  const defaultSpiralLinesProps = {
-    lineCount: SpiralLinesControlsConfig.lineCount.default,
-    spiralRadius: SpiralLinesControlsConfig.spiralRadius.default,
-    distanceToCenter: SpiralLinesControlsConfig.distanceToCenter.default,
-    numRotationsToCenter:
-      SpiralLinesControlsConfig.numRotationsToCenter.default,
-    segments: SpiralLinesControlsConfig.segments.default,
-    spiralSpeed: SpiralLinesControlsConfig.spiralSpeed.default,
-    color: SpiralLinesControlsConfig.color.default,
-    lineWidth: SpiralLinesControlsConfig.lineWidth.default,
-    opacity: SpiralLinesControlsConfig.opacity.default,
-  };
-
-  // State for mutable SpiralLines properties only
-  const [spiralLinesProps, setSpiralLinesProps] = useState<SpiralLinesProps>(
-    defaultSpiralLinesProps
-  );
-
-  // Always use the current state, regardless of controls visibility
-  const activeSpiralLinesProps = spiralLinesProps;
-
   // Create default Particles props from config with device adaptation
   const defaultParticlesProps = {
     particleCount: deviceCapabilities.preferredParticleCount,
@@ -116,8 +88,6 @@ const BlackHoleCanvas = ({
     radialSpeed: ParticlesControlsConfig.radialSpeed.default,
     spiralSpeed: ParticlesControlsConfig.spiralSpeed.default,
     turbulence: ParticlesControlsConfig.turbulence.default,
-    minDrawRadiusModifier:
-      ParticlesControlsConfig.minDrawRadiusModifier.default,
     maxDrawRadiusModifier:
       ParticlesControlsConfig.maxDrawRadiusModifier.default,
   };
@@ -156,7 +126,6 @@ const BlackHoleCanvas = ({
         <BlackHoleScene
           position={[0, 0, 0]}
           sphereProps={activeSphereProps}
-          spiralLinesProps={activeSpiralLinesProps}
           particlesProps={activeParticlesProps}
         />
       </Canvas>
@@ -167,8 +136,6 @@ const BlackHoleCanvas = ({
             showControls={controls}
             sphereMutableProps={sphereMutableProps}
             onSphereMutablePropsChange={setSphereMutableProps}
-            spiralLinesProps={spiralLinesProps}
-            onSpiralLinesPropsChange={setSpiralLinesProps}
             particlesProps={particlesProps}
             onParticlesPropsChange={setParticlesProps}
           />

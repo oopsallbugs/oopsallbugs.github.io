@@ -1,13 +1,11 @@
 import type {
   BlackHoleControlsProps,
   BlackHoleSphereMutableProps,
-  SpiralLinesProps,
   ParticlesProps,
   ControlConfig,
 } from "../blackHoleTypes";
 import {
   blackHoleSphereControlsConfig,
-  SpiralLinesControlsConfig,
   ParticlesControlsConfig,
 } from "../blackHoleTypes";
 import { useState } from "react";
@@ -56,13 +54,10 @@ const BlackHoleControls = ({
   showControls,
   sphereMutableProps,
   onSphereMutablePropsChange,
-  spiralLinesProps,
-  onSpiralLinesPropsChange,
   particlesProps,
   onParticlesPropsChange,
 }: BlackHoleControlsProps) => {
   const [showBlackHoleControls, setShowBlackHoleControls] = useState(false);
-  const [showSpiralControls, setShowSpiralControls] = useState(false);
   const [showParticlesControls, setShowParticlesControls] = useState(false);
 
   // Handlers
@@ -71,13 +66,6 @@ const BlackHoleControls = ({
     value: BlackHoleSphereMutableProps[K]
   ) => {
     onSphereMutablePropsChange({ ...sphereMutableProps, [key]: value });
-  };
-
-  const handleSpiralChange = <K extends keyof SpiralLinesProps>(
-    key: K,
-    value: SpiralLinesProps[K]
-  ) => {
-    onSpiralLinesPropsChange({ ...spiralLinesProps, [key]: value });
   };
 
   const handleParticlesChange = <K extends keyof ParticlesProps>(
@@ -110,21 +98,6 @@ const BlackHoleControls = ({
                     ],
                     handleSphereChange
                   )
-              )}
-            </div>
-          )}
-
-          {/* Spiral Controls */}
-          <h3 onClick={() => setShowSpiralControls((v) => !v)}>Spiral</h3>
-          {showSpiralControls && (
-            <div className={styles.spiralLinesControls}>
-              {Object.entries(SpiralLinesControlsConfig).map(([key, config]) =>
-                renderControl<SpiralLinesProps, keyof SpiralLinesProps>(
-                  key as keyof SpiralLinesProps,
-                  config,
-                  spiralLinesProps[key as keyof SpiralLinesProps],
-                  handleSpiralChange
-                )
               )}
             </div>
           )}

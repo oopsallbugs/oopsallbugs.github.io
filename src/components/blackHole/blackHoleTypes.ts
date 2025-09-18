@@ -30,19 +30,6 @@ export interface BlackHoleSphereFixedProps {
   rotationSpeed: number;
 }
 
-// Spiral Lines
-export interface SpiralLinesProps {
-  lineCount: number;
-  spiralRadius: number;
-  distanceToCenter: number;
-  numRotationsToCenter: number;
-  segments: number;
-  spiralSpeed: number;
-  color: string;
-  lineWidth: number;
-  opacity: number;
-}
-
 // Particles
 export interface ParticlesProps {
   particleCount: number;
@@ -54,7 +41,6 @@ export interface ParticlesProps {
   radialSpeed: number;
   spiralSpeed: number;
   turbulence: number;
-  minDrawRadiusModifier: number;
   maxDrawRadiusModifier: number;
 }
 
@@ -90,18 +76,6 @@ export type BlackHoleSphereControlsConfig = {
   glowIntensity: RangeConfig;
 };
 
-export type SpiralLinesControlsConfig = {
-  lineCount: RangeConfig;
-  spiralRadius: RangeConfig;
-  distanceToCenter: RangeConfig;
-  numRotationsToCenter: RangeConfig;
-  segments: RangeConfig;
-  spiralSpeed: RangeConfig;
-  color: ColorConfig;
-  lineWidth: RangeConfig;
-  opacity: RangeConfig;
-};
-
 export type ParticlesControlsConfig = {
   particleCount: RangeConfig;
   size: RangeConfig;
@@ -111,7 +85,6 @@ export type ParticlesControlsConfig = {
   radialSpeed: RangeConfig;
   spiralSpeed: RangeConfig;
   turbulence: RangeConfig;
-  minDrawRadiusModifier: RangeConfig;
   maxDrawRadiusModifier: RangeConfig;
 };
 
@@ -121,13 +94,11 @@ export type ParticlesControlsConfig = {
 
 export type BlackHoleComponentProps = {
   sphere: BlackHoleSphereProps;
-  lines: SpiralLinesProps;
   particles: ParticlesProps;
 };
 
 export type BlackHoleControlsConfig = {
   sphere: BlackHoleSphereControlsConfig;
-  lines: SpiralLinesControlsConfig;
   particles: ParticlesControlsConfig;
 };
 
@@ -162,74 +133,6 @@ export const blackHoleSphereControlsConfig: BlackHoleSphereControlsConfig = {
   },
 };
 
-export const SpiralLinesControlsConfig: SpiralLinesControlsConfig = {
-  lineCount: {
-    type: "range",
-    min: 0,
-    max: 100,
-    step: 1,
-    default: 0,
-    name: "Num Lines",
-  },
-  spiralRadius: {
-    type: "range",
-    min: 0,
-    max: 100,
-    step: 1,
-    default: 18,
-    name: "Spiral Radius",
-  },
-  distanceToCenter: {
-    type: "range",
-    min: 0,
-    max: 2,
-    step: 0.05,
-    default: 1,
-    name: "Distance to Center",
-  },
-  numRotationsToCenter: {
-    type: "range",
-    min: 0,
-    max: 50,
-    step: 1,
-    default: 8,
-    name: "Num Rotations",
-  },
-  segments: {
-    type: "range",
-    min: 2,
-    max: 100,
-    step: 1,
-    default: 150,
-    name: "Segments",
-  },
-  spiralSpeed: {
-    type: "range",
-    min: 0,
-    max: 5,
-    step: 0.1,
-    default: 0.4,
-    name: "Spiral Speed",
-  },
-  color: { type: "color", default: "#6666ff", name: "Line Color" },
-  lineWidth: {
-    type: "range",
-    min: 0.1,
-    max: 3,
-    step: 0.1,
-    default: 1,
-    name: "Line Width",
-  },
-  opacity: {
-    type: "range",
-    min: 0,
-    max: 1,
-    step: 0.1,
-    default: 0.5,
-    name: "Opacity",
-  },
-};
-
 export const ParticlesControlsConfig: ParticlesControlsConfig = {
   particleCount: {
     type: "range",
@@ -237,7 +140,7 @@ export const ParticlesControlsConfig: ParticlesControlsConfig = {
     max: 200000,
     step: 1000,
     default: deviceCapabilities.preferredParticleCount,
-    name: "Num Particles",
+    name: "Count",
   },
   size: {
     type: "range",
@@ -245,16 +148,16 @@ export const ParticlesControlsConfig: ParticlesControlsConfig = {
     max: 0.2,
     step: 0.01,
     default: 0.08,
-    name: "Particle Size",
+    name: "Size",
   },
-  color: { type: "color", default: "#00eeff", name: "Particle Color" },
+  color: { type: "color", default: "#00eeff", name: "Color" },
   opacity: {
     type: "range",
     min: 0,
     max: 1,
     step: 0.1,
     default: 0.7,
-    name: "Particle Opacity",
+    name: "Opacity",
   },
   coneAngle: {
     type: "range",
@@ -267,10 +170,10 @@ export const ParticlesControlsConfig: ParticlesControlsConfig = {
   radialSpeed: {
     type: "range",
     min: 0.001,
-    max: 0.1,
+    max: 1,
     step: 0.001,
     default: 0.025,
-    name: "Radial Speed",
+    name: "Gravity Strength",
   },
   spiralSpeed: {
     type: "range",
@@ -278,7 +181,7 @@ export const ParticlesControlsConfig: ParticlesControlsConfig = {
     max: 1,
     step: 0.01,
     default: 0.25,
-    name: "Spiral Speed",
+    name: "Orbit Speed",
   },
   turbulence: {
     type: "range",
@@ -288,21 +191,13 @@ export const ParticlesControlsConfig: ParticlesControlsConfig = {
     default: 0.05,
     name: "Turbulence",
   },
-  minDrawRadiusModifier: {
-    type: "range",
-    min: 0,
-    max: 100,
-    step: 1,
-    default: 10,
-    name: "Min Draw Radius",
-  },
   maxDrawRadiusModifier: {
     type: "range",
-    min: 0,
+    min: 0.5,
     max: 100,
     step: 1,
     default: 20,
-    name: "Max Draw Radius",
+    name: "Draw Radius",
   },
 };
 
@@ -314,8 +209,6 @@ export interface BlackHoleControlsProps {
   showControls: boolean;
   sphereMutableProps: BlackHoleSphereMutableProps;
   onSphereMutablePropsChange: (props: BlackHoleSphereMutableProps) => void;
-  spiralLinesProps: SpiralLinesProps;
-  onSpiralLinesPropsChange: (props: SpiralLinesProps) => void;
   particlesProps: ParticlesProps;
   onParticlesPropsChange: (props: ParticlesProps) => void;
 }
