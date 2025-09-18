@@ -13,21 +13,19 @@ const Particles = ({
   radialSpeed,
   spiralSpeed,
   turbulence,
-  minDrawRadiusModifier,
   maxDrawRadiusModifier,
 }: ParticlesProps) => {
   const particlesRef = useRef<THREE.Points>(null);
   const clockRef = useRef(new THREE.Clock());
 
-  const initialMinDrawRadius = blackHoleRadius + 0.2;
-  const minDrawRadius = blackHoleRadius + minDrawRadiusModifier;
+  const minDrawRadius = blackHoleRadius + 0.2;
   const maxDrawRadius = blackHoleRadius + maxDrawRadiusModifier;
 
   // Memoized particle generation function
   const generateParticle = useCallback(
     (positions: Float32Array, i3: number) => {
       const radius = THREE.MathUtils.lerp(
-        initialMinDrawRadius,
+        minDrawRadius,
         maxDrawRadius,
         Math.random()
       );
@@ -44,7 +42,7 @@ const Particles = ({
       positions[i3 + 1] = py;
       positions[i3 + 2] = pz;
     },
-    [initialMinDrawRadius, maxDrawRadius, coneAngle]
+    [minDrawRadius, maxDrawRadius, coneAngle]
   );
 
   // Memoized respawn function

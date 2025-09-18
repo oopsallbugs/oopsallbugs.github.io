@@ -43,6 +43,7 @@
   bottom: var(--space-4);
   right: var(--space-4);
   z-index: var(--z-overlay);
+  margin-left: var(--space-4);
   background-color: transparent;
   width: fit-content;
   pointer-events: auto;
