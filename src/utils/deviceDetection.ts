@@ -5,6 +5,7 @@ interface DeviceCapabilities {
   preferredParticleCount: number;
   initialCubemapSize: string;
   maxCubemapSize: string;
+  effectiveType?: string;
 }
 
 interface NetworkInformation {
@@ -67,6 +68,7 @@ export const detectDeviceCapabilities = (): DeviceCapabilities => {
     preferredParticleCount,
     initialCubemapSize,
     maxCubemapSize,
+    effectiveType,
   };
 };
 
